@@ -1,0 +1,1 @@
+var URL_SERVER = "http://mercandalli.com/Jarvis-API/";

@@ -6,11 +6,12 @@ app.controller('UserCtrl',function($scope, $http, Base64){
 
 	    $http({
 
-	        url: "http://mercandalli.com/Jarvis-API/",
+	        url: URL_SERVER+"user",
 	        data: $scope.form,
 	        method: 'GET',
 	        headers : {
-	        	'Authorization':'Basic '+ Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password))
+	        	'Authorization':'Basic '+ Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)),
+        		'Content-Type':'application/json',
 	        }
 
 	    })
