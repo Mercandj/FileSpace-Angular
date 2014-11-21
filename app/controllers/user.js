@@ -10,7 +10,7 @@ app.controller('UserCtrl',function($scope, $http, Base64){
 	        data: $scope.form,
 	        method: 'GET',
 	        headers : {
-	        	'Authorization-Type':'Basic '+ Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password))
+	        	'Authorization':'Basic '+ Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password))
 	        }
 
 	    })
@@ -21,10 +21,11 @@ app.controller('UserCtrl',function($scope, $http, Base64){
 
 	    })
 	    .error(function(data, status, headers, config) {
-	    	console.log("ERROR "+data);
+
+	    	console.log("ERROR "+status);
 	    	console.log("data "+data);
+
 	    });
 
 	}
-
 });
