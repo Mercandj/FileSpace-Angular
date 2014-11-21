@@ -6,7 +6,7 @@ app.controller('UserCtrl',function($scope, $http, Base64){
 
 	    $http({
 
-	        url: URL_SERVER+"user",
+	        url: URL_SERVER+'user',
 	        data: $scope.form,
 	        method: 'GET',
 	        headers : {

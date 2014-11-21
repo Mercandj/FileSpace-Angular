@@ -1,9 +1,9 @@
-var app = angular.module('Jarvis', ['ngRoute']);
+var app = angular.module('Jarvis', ['ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider){
 	$routeProvider
 		.when('/', {templateUrl: 'views/index.html', controller:'UserCtrl'})
-		.when('/file', {templateUrl: 'views/file.html',controller: 'FilesCtrl'})
+		.when('/file', {templateUrl: 'views/file.html',controller: 'FileCtrl'})
 		.otherwise({redirectTo : '/'});
 });
 
