@@ -16,16 +16,10 @@ app.controller('UserCtrl',function($scope, $http, Base64){
 
 	    })
 	    .success(function(data, status, headers, config) {
-
-	        console.log("OK "+status);
-	        console.log("data "+data);
-
+	        console.log(status + " : " + JSON.stringify(data));
 	    })
 	    .error(function(data, status, headers, config) {
-
-	    	console.log("ERROR "+status);
-	    	console.log("data "+data);
-
+	    	console.log(status + " : " + JSON.stringify(data));
 	    });
 
 	}
