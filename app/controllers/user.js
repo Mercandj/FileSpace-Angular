@@ -11,11 +11,14 @@ app.controller('UserCtrl',function($scope, $http){
 	        method: 'GET',
 	        headers : {'Authorization-Type':'Basic '+$scope.user.username+':password'+hex_sha1($scope.user.password)}
 
-	    }).success(function(data){
+	    })
+	    .success(function(data, status){
 
-	        console.log("OK", data)
+	        console.log("OK "+status, data);
+	        console.log("TEST "+status);
 
-	    }).error(function(err){"ERR", console.log(err)})
+	    })
+	    .error(function(err){"ERR", console.log(err)});
 
 	}
 
