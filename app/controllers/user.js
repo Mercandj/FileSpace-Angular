@@ -1,4 +1,4 @@
-app.controller('UserCtrl',function($scope, $http){
+app.controller('UserCtrl',function($scope, $http, Base64){
 
     $scope.user = {};
 
@@ -9,16 +9,18 @@ app.controller('UserCtrl',function($scope, $http){
 	        url: "http://mercandalli.com/Jarvis-API/",
 	        data: $scope.form,
 	        method: 'GET',
-	        headers : {'Authorization-Type':'Basic '+$scope.user.username+':'+hex_sha1($scope.user.password)}
+	        headers : {'Authorization-Type':'Basic '+ Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password))}
 
 	    })
-	    .success(function(data, status){
+	    .success(function(data, status, headers, config) {
 
 	        console.log("OK "+status, data);
 	        console.log("TEST "+status);
 
 	    })
-	    .error(function(err){"ERR", console.log(err)});
+	    .error(function(data, status, headers, config) {
+	    	"ERR", console.log(data)
+	    });
 
 	}
 
