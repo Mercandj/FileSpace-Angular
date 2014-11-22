@@ -54,8 +54,7 @@ app.service('myFileUpload', ['$http', 'myCache',
             $http.post(uploadUrl, fd, {
                 transformRequest: angular.identity,
                 headers: {
-                    'Authorization':'Basic '+ myCache.get('myData'),
-                    'Content-Type': undefined
+                    'Authorization':'Basic '+ myCache.get('myData')
                 }
             })
             .success(function(data, status, headers, config) {
