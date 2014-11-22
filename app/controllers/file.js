@@ -42,7 +42,7 @@ app.controller('FileCtrl',
             var file = $scope.selectedFile[0];
             console.log('file is ' + JSON.stringify(file));
             myFileUpload.uploadFileToUrl(
-                URL_SERVER+'file'
+                URL_SERVER+'file',
                 myCache.get('myData'),
                 file
             );
