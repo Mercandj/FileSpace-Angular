@@ -7,7 +7,7 @@ app.controller('FileCtrl',
         alert(msg);
     });
 	*/
-
+		var deferred = $q.defer();
 		$http({
 
             url: URL_SERVER+'file',
