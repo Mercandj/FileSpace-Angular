@@ -10,7 +10,6 @@ app.factory('FileFactory', function($http, $q, myCache){
                 $http({
 
                     url: URL_SERVER+'file',
-                    data: $scope.form,
                     method: 'GET',
                     headers : {
                         'Authorization':'Basic '+ myCache.get('myData'),
