@@ -6,6 +6,9 @@ app.factory('FileFactory', function($http, $q){
             if(factory.files !== false)
                 deferred.resolve(factory.files);
             else {
+
+                console.log(""+myCache.get('myData'));
+
                 $http.get(URL_SERVER+'file')
                     .success(function(data,status) {
                         factory.files = data;

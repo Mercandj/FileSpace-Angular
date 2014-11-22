@@ -19,10 +19,8 @@ body {
   font-size: 62.5%;
 }
 #wrapper {
-  width: 100%;
+  width: 90%;
   margin: auto;
-  top: 20%;
-  position: absolute;
 }
 header {
   padding: 3em 0;
@@ -58,7 +56,7 @@ section article p {
 form {
   background: #fafafa;
   width: 300px;
-  margin: auto;
+  margin: 0 auto;
   top: 20%;
   vertical-align: middle;
 }
