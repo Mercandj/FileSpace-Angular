@@ -22,7 +22,7 @@ app.controller('UserCtrl',
 
 		        if(data.succeed === true) {
 		        	myCache.put('myData', Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)));
-		        	$location.path( "/home" );
+		        	$location.path( "/file" );
 		        }
 
 		    })
