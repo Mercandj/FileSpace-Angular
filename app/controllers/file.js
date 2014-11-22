@@ -6,7 +6,7 @@ app.controller('FileCtrl',
         },function(msg){
             alert(msg);
         });
-	   */
+	    */
 
         //an array of files selected
         $scope.files = [];

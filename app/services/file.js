@@ -1,13 +1,12 @@
 app.factory('FileFactory',
     function($scope, $location, $http, $q, myCache) {
-
         
         var factory = {
             file : false,
             all : function() {
                 
                 var deferred = $q.defer();
-                /*
+                
                 if(factory.file !== false) {
                     console.log('file.js : factory.file !== false');
                     deferred.resolve(factory.file);
@@ -36,7 +35,7 @@ app.factory('FileFactory',
                             deferred.reject('Cannot get files');
                     });
                 }
-                */
+                
                 return deferred.promise;
             },
         }
@@ -53,15 +52,6 @@ app.service('fileService', ['$http', 'myCache',
             var fd = new FormData();
             fd.append('file', p_file);
 
-            /*
-            $http.post(uploadUrl, fd, {
-                transformRequest: angular.identity,
-                headers: {
-                    'Authorization':'Basic '+ auth,
-                    'Content-Type': undefined
-                }
-            })
-            */
             $http({
 
                 url: p_url,

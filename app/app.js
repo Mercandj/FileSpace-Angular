@@ -7,7 +7,6 @@ app.config(function($routeProvider){
 		.otherwise({redirectTo : '/'});
 });
 
-
 app.directive('fileUpload', function () {
     return {
         scope: true,        //create a new scope
