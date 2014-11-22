@@ -1,6 +1,6 @@
 app.factory('FileFactory', function($scope, $location, $http, $q, myCache) {
 
-    
+    /*
     var factory = {
         file : false,
         all : function() {
@@ -39,5 +39,5 @@ app.factory('FileFactory', function($scope, $location, $http, $q, myCache) {
     }
 
     return factory;
-    
+    */
 })
