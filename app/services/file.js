@@ -1,4 +1,4 @@
-app.factory('FileFactory', function($http, $q, myCache){
+app.factory('FileFactory', function($scope, $location, $http, $q, myCache){
     var factory = {
         files : false,
         all : function() {
