@@ -7,6 +7,8 @@ app.controller('FileCtrl',
         alert(msg);
     });
 	*/
+        $scope.selectedFile = [];
+
 		var deferred = $q.defer();
 		$http({
 
@@ -37,8 +39,9 @@ app.controller('FileCtrl',
         });
 
         $scope.uploadFile = function() {
-            console.log('file is ' + JSON.stringify($scope.selectedFile));
-            myFileUpload.uploadFileToUrl($scope.selectedFile, URL_SERVER+'file');
+            var file = $scope.selectedFile[0];
+            console.log('file is ' + JSON.stringify(file));
+            myFileUpload.uploadFileToUrl(file, URL_SERVER+'file');
         };
 
         $scope.onFileSelect = function ($files) {
