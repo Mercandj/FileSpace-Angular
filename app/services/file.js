@@ -18,6 +18,8 @@ app.factory('FileFactory', function($scope, $location, $http, $q, myCache){
 
                 })
                 .success(function(data,status) {
+                    console.log(status + " : " + JSON.stringify(data));
+
                     factory.files = data;
                     deferred.resolve(factory.files);
                 })
