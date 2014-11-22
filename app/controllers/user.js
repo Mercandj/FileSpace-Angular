@@ -4,7 +4,7 @@ app.controller('UserCtrl',
 	    $scope.user = {};
 	    var deferred = $q.defer();
 
-	    $scope.submit = userService.login();/*function() {
+	    $scope.submit = function(){userService.login();}/*function() {
 
 		    $http({
 
