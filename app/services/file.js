@@ -67,12 +67,7 @@ app.service('myFileUpload', ['$http', 'myCache',
 
             })
             .error(function(data, status, headers, config) {
-                if(status == 401)
-                    deferred.reject('401 unauthorized');
-                else if(status == 404)
-                    deferred.reject('404 not found');
-                else
-                    deferred.reject('Cannot get user');
+                console.log(status + " : " + JSON.stringify(data));
             });
         }
     }
