@@ -1,4 +1,4 @@
-var app = angular.module('Jarvis', ['ngRoute']);
+var app = angular.module('Jarvis', ['ngRoute', 'angularFileUpload']);
 
 app.config(function($routeProvider){
 	$routeProvider
