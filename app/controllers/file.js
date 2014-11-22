@@ -1,5 +1,5 @@
 app.controller('FileCtrl',
-	function($scope, $location, $http, $q, Base64, myCache, myFileUpload) {
+	function($scope, $location, $http, $q, $upload, Base64, myCache, myFileUpload) {
 	/*
     $scope.file = FileFactory.all().then(function(file) {
         $scope.file = file;
@@ -41,16 +41,44 @@ app.controller('FileCtrl',
         $scope.uploadFile = function() {
             var file = $scope.selectedFile[0];
             console.log('file is ' + JSON.stringify(file));
+
+            /*
             myFileUpload.uploadFileToUrl(
                 URL_SERVER+'file',
                 myCache.get('myData'),
                 file
-            );
+            );*/
+
+            $upload.upload({
+                headers : {
+                    'Authorization':'Basic '+ p_auth,
+                    'Content-Type': undefined
+                },
+                url: URL_SERVER+'file',
+                file: $file,
+                progress: function(e){}
+              }).then(function(data, status, headers, config) {
+                // file is uploaded successfully
+                console.log(data);
+              }); 
+
         };
 
         $scope.onFileSelect = function ($files) {
-            $scope.uploadProgress = 0;
             $scope.selectedFile = $files;
+
+            $upload.upload({
+                headers : {
+                    'Authorization':'Basic '+ p_auth,
+                    'Content-Type': undefined
+                },
+                url: URL_SERVER+'file',
+                file: $files[0],
+                progress: function(e){}
+              }).then(function(data, status, headers, config) {
+                // file is uploaded successfully
+                console.log(data);
+              }); 
         };
 
 	}
