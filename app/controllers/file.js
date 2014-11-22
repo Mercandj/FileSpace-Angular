@@ -53,11 +53,35 @@ app.controller('FileCtrl',
             
             var file = $scope.files[0];
             console.log('file is ' + JSON.stringify(file));
+            /*
             myFileUpload.uploadFileToUrl(
                 URL_SERVER+'file',
                 myCache.get('myData'),
                 file
             );
+            */
+            var fd = new FormData();
+            fd.append('file', file);
+            $http.post(URL_SERVER+'file', fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Authorization':'Basic '+ myCache.get('myData'),
+                    'Content-Type': undefined
+                }
+            })
+            .success(function(data, status, headers, config) {
+                console.log(status + " : " + JSON.stringify(data));
+
+                if(data.succeed === true) {
+
+                }
+
+            })
+            .error(function(data, status, headers, config) {
+                console.log(status + " : " + JSON.stringify(data));
+            });
+
+
             
             /*
             $http({
