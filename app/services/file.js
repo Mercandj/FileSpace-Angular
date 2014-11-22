@@ -46,31 +46,33 @@ app.factory('FileFactory',
     }
 );
 
-app.service('myFileUpload', ['$http', 'myCache',
+app.service('myFileUpload', ['$http', 'myCache', 
     function ($http, myCache) {
-        this.uploadFileToUrl = function(p_url, p_auth, file) {
-
-            $http({
-
-                url: p_url,
-                method: 'POST',
-                headers : {
-                    'Authorization':'Basic '+ p_auth,
+        this.uploadFileToUrl = function(file, uploadUrl){
+            var fd = new FormData();
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Authorization':'Basic '+ myCache.get('myData'),
                     'Content-Type': undefined
-                },
-                file: file
-
+                }
             })
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
 
                 if(data.succeed === true) {
-
+                    
                 }
 
             })
             .error(function(data, status, headers, config) {
-                console.log(status + " : " + JSON.stringify(data));
+                if(status == 401)
+                    deferred.reject('401 unauthorized');
+                else if(status == 404)
+                    deferred.reject('404 not found');
+                else
+                    deferred.reject('Cannot get user');
             });
         }
     }

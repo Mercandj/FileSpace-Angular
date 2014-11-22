@@ -12,8 +12,11 @@
        	 </a>
     </article>
 
-    <form ng-submit="uploadFile()">
-	    <input type="file" ng-file-select="onFileSelect($files)">
-	    <button button type="submit">Upload</button>
-	</form>
+    <div ng-controller="FileCtrl">
+	    <input type="file" file-upload multiple/>
+	    <ul>
+	        <li ng-repeat="file in files">{{file.name}}</li>
+	    </ul>
+	    <button type="submit" ng-click="uploadFile()">Upload</button>
+	</div>
 </section>
