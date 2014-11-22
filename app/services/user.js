@@ -19,14 +19,14 @@ app.service('userService', ['$http', 'myCache',
 
                 if(data.succeed === true) {
                     myCache.put('myData', p_auth);
-                    $location.path( "/file" );
+                    return true;
                 }
 
             })
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
-
+            return false;
         }
     }
 ]);
