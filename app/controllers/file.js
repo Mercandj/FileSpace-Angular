@@ -20,6 +20,11 @@ app.controller('FileCtrl',
         })
         .success(function(data,status) {
             console.log(status + " : " + JSON.stringify(data));
+
+            if(data.succeed === true) {
+            	console.log("Result : " + JSON.stringify(data.result));
+            	$scope.files = data.result;
+            }
         })
         .error(function(data,status) {
             if(status == 401)
