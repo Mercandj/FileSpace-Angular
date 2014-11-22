@@ -13,11 +13,11 @@ app.factory('FileFactory', function($http, $q){
                     })
                     .error(function(data,status) {
                         if(status == 401)
-                            deferred.reject('401 unauthorized')
+                            deferred.reject('401 unauthorized');
                         else if(status == 404)
                             deferred.reject('404 not found');
                         else
-                            deferred.reject('Cannot get files');                        
+                            deferred.reject('Cannot get files');
                     })
             }
             return deferred.promise;

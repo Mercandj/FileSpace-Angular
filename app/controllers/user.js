@@ -1,7 +1,8 @@
 app.controller('UserCtrl', 
-	function($scope, $http, Base64, myCache) {
+	function($scope, $http, $q, Base64, myCache) {
 
 	    $scope.user = {};
+	    var deferred = $q.defer();
 
 	    $scope.submit = function() {
 
@@ -17,19 +18,22 @@ app.controller('UserCtrl',
 
 		    })
 		    .success(function(data, status, headers, config) {
-		        console.log(status + " : " + JSON.stringify(data));
+		        console.log(status + " : " + JSON.stringify(data));		        
 
-		        myCache.put('myData', Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)));
-		        console.log("CACHE : " + myCache.get("myData"));
-
-		        if(data.succeed === true)
-		        	console.log("succeed = true");
-		        else
-		        	console.log("succeed = false");
+		        if(data.succeed === true) {
+		        	myCache.put('myData', Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)));
+		        	console.log("CACHE : " + myCache.get("myData"));
+		        	return myCache.get("myData");
+		        }
 
 		    })
 		    .error(function(data, status, headers, config) {
-		    	console.log(status + " : " + JSON.stringify(data));
+		    	if(status == 401)
+                    deferred.reject('401 unauthorized');
+                else if(status == 404)
+                    deferred.reject('404 not found');
+                else
+                    deferred.reject('Cannot get user');
 		    });
 
 		}
