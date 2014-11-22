@@ -58,9 +58,16 @@ app.service('myFileUpload', ['$http', 'myCache',
                     'Content-Type': undefined
                 }
             })
-            .success(function(){
+            .success(function(data, status, headers, config) {
+                console.log(status + " : " + JSON.stringify(data));
+
+                if(data.succeed === true) {
+                    
+                }
+
             })
-            .error(function(){
+            .error(function(data, status, headers, config) {
+                console.log(status + " : " + JSON.stringify(data));
             });
         }
     }
