@@ -1,10 +1,10 @@
 app.controller('UserCtrl', 
-	function($scope, $location, $http, $q, Base64, myCache) {
+	function($scope, $location, $http, $q, Base64, myCache, , userService) {
 
 	    $scope.user = {};
 	    var deferred = $q.defer();
 
-	    $scope.submit = function() {
+	    $scope.submit = userService.login();/*function() {
 
 		    $http({
 
@@ -35,6 +35,6 @@ app.controller('UserCtrl',
                     deferred.reject('Cannot get user');
 		    });
 
-		}
+		}*/
 	}
 );
