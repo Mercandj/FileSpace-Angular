@@ -1,4 +1,4 @@
-app.service('userService', ['$scope', '$location', '$http', '$q', 'Base64', 'myCache'
+app.service('userService', ['$scope', '$location', '$http', '$q', 'Base64', 'myCache',
     function($scope, $location, $http, $q, Base64, myCache) {
 
         $scope.user = {};
