@@ -10,7 +10,7 @@ app.factory('FileFactory',
                 /*
                 if(factory.file !== false) {
                     console.log('file.js : factory.file !== false');
-                    deferred.resolve(factory.fil);
+                    deferred.resolve(factory.file);
                 }
                 else {
                     $http({
@@ -45,3 +45,23 @@ app.factory('FileFactory',
         
     }
 );
+
+app.service('myFileUpload', ['$http', 'myCache', 
+    function ($http, myCache) {
+        this.uploadFileToUrl = function(file, uploadUrl){
+            var fd = new FormData();
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Authorization':'Basic '+ myCache.get('myData'),
+                    'Content-Type': undefined
+                }
+            })
+            .success(function(){
+            })
+            .error(function(){
+            });
+        }
+    }
+]);

@@ -11,5 +11,9 @@
        	 	<p>{{file.date_creation}}</p>
        	 </a>
     </article>
-    
+
+	<form ng-submit="submit()">
+	    <input type="file" file-model="myFile"/>
+	    <button type="submit">Upload</button>
+    </form>
 </section>

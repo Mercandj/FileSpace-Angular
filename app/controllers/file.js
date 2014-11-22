@@ -1,5 +1,5 @@
 app.controller('FileCtrl',
-	function($scope, $location, $http, $q, Base64, myCache) {
+	function($scope, $location, $http, $q, Base64, myCache, myFileUpload) {
 	/*
     $scope.file = FileFactory.all().then(function(file) {
         $scope.file = file;
@@ -36,6 +36,13 @@ app.controller('FileCtrl',
                 deferred.reject('Cannot get files');
         });
 
+
+        $scope.uploadFile = function(){
+            var file = $scope.myFile;
+            console.log('file is ' + JSON.stringify(file));
+            var uploadUrl = URL_SERVER+'file';
+            myFileUpload.uploadFileToUrl(file, uploadUrl);
+        };
 
 
 	}
