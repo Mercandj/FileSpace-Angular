@@ -36,10 +36,10 @@ app.controller('FileCtrl',
                 deferred.reject('Cannot get files');
         });
 
-        $scope.uploadFile = function(file) {
-            console.log('file is ' + JSON.stringify(file));
+        $scope.uploadFile = function($files) {
+            console.log('file is ' + JSON.stringify($files));
             var uploadUrl = URL_SERVER+'file';
-            myFileUpload.uploadFileToUrl(file, uploadUrl);
+            myFileUpload.uploadFileToUrl($files, uploadUrl);
         };
 
 	}
