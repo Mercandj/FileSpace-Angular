@@ -7,21 +7,29 @@ app.factory('FileFactory', function($http, $q, myCache){
                 deferred.resolve(factory.files);
             else {
 
-                console.log(""+myCache.get('myData'));
+                $http({
 
-                $http.get(URL_SERVER+'file')
-                    .success(function(data,status) {
-                        factory.files = data;
-                        deferred.resolve(factory.files);
-                    })
-                    .error(function(data,status) {
-                        if(status == 401)
-                            deferred.reject('401 unauthorized');
-                        else if(status == 404)
-                            deferred.reject('404 not found');
-                        else
-                            deferred.reject('Cannot get files');
-                    })
+                    url: URL_SERVER+'file',
+                    data: $scope.form,
+                    method: 'GET',
+                    headers : {
+                        'Authorization':'Basic '+ myCache.get('myData'),
+                        'Content-Type':'application/json',
+                    }
+
+                })
+                .success(function(data,status) {
+                    factory.files = data;
+                    deferred.resolve(factory.files);
+                })
+                .error(function(data,status) {
+                    if(status == 401)
+                        deferred.reject('401 unauthorized');
+                    else if(status == 404)
+                        deferred.reject('404 not found');
+                    else
+                        deferred.reject('Cannot get files');
+                })
             }
             return deferred.promise;
         },
