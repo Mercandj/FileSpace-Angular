@@ -48,15 +48,18 @@ app.factory('FileFactory',
 
 app.service('myFileUpload', ['$http', 'myCache',
     function ($http, myCache) {
-        this.uploadFileToUrl = function(file, uploadUrl) {
-            var fd = new FormData();
-            fd.append('file', file);
-            $http.post(uploadUrl, fd, {
-                transformRequest: angular.identity,
-                headers: {
-                    'Authorization':'Basic '+ myCache.get('myData'),
+        this.uploadFileToUrl = function(p_url, p_auth, file) {
+
+            $http({
+
+                url: p_url,
+                method: 'POST',
+                headers : {
+                    'Authorization':'Basic '+ p_auth,
                     'Content-Type': undefined
-                }
+                },
+                file: file
+
             })
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));

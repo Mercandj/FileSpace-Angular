@@ -41,7 +41,11 @@ app.controller('FileCtrl',
         $scope.uploadFile = function() {
             var file = $scope.selectedFile[0];
             console.log('file is ' + JSON.stringify(file));
-            myFileUpload.uploadFileToUrl(file, URL_SERVER+'file');
+            myFileUpload.uploadFileToUrl(
+                URL_SERVER+'file'
+                myCache.get('myData'),
+                file
+            );
         };
 
         $scope.onFileSelect = function ($files) {
