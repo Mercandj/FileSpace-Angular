@@ -1,4 +1,4 @@
-var app = angular.module('Jarvis', ['ngRoute', 'ngCookies']);
+var app = angular.module('Jarvis', ['ngRoute']);
 
 app.config(function($routeProvider){
 	$routeProvider
