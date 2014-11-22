@@ -37,7 +37,7 @@ app.controller('FileCtrl',
         });
 
 
-        $scope.uploadFile = function(){
+        $scope.uploadFile = function() {
             var file = $scope.myFile;
             console.log('file is ' + JSON.stringify(file));
             var uploadUrl = URL_SERVER+'file';

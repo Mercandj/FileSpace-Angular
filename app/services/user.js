@@ -1,18 +1,15 @@
-app.service('userService', ['$scope', '$location', '$http', '$q', 'Base64', 'myCache',
-    function($scope, $location, $http, $q, Base64, myCache) {
+app.service('userService', ['$http', 'myCache',
+    function ($http, myCache) {
 
-        $scope.user = {};
-        var deferred = $q.defer();
-
-        this.login = function() {
+        this.login = function(p_url, p_auth, p_data) {
 
             $http({
 
-                url: URL_SERVER+'user',
-                data: $scope.form,
+                url: p_url,
+                data: p_data,
                 method: 'GET',
                 headers : {
-                    'Authorization':'Basic '+ Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)),
+                    'Authorization':'Basic '+ p_auth,
                     'Content-Type':'application/json',
                 }
 
@@ -21,18 +18,13 @@ app.service('userService', ['$scope', '$location', '$http', '$q', 'Base64', 'myC
                 console.log(status + " : " + JSON.stringify(data));
 
                 if(data.succeed === true) {
-                    myCache.put('myData', Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)));
+                    myCache.put('myData', p_auth);
                     $location.path( "/file" );
                 }
 
             })
             .error(function(data, status, headers, config) {
-                if(status == 401)
-                    deferred.reject('401 unauthorized');
-                else if(status == 404)
-                    deferred.reject('404 not found');
-                else
-                    deferred.reject('Cannot get user');
+                console.log(status + " : " + JSON.stringify(data));
             });
 
         }

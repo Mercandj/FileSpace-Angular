@@ -46,7 +46,7 @@ app.factory('FileFactory',
     }
 );
 
-app.service('myFileUpload', ['$http', 'myCache', 
+app.service('myFileUpload', ['$http', 'myCache',
     function ($http, myCache) {
         this.uploadFileToUrl = function(file, uploadUrl) {
             var fd = new FormData();
