@@ -1,12 +1,12 @@
 app.controller('FileCtrl',
 	function($scope, $location, $http, $q, $upload, Base64, myCache, myFileUpload) {
-	
+	   /*
         $scope.file = FileFactory.all().then(function(file) {
             $scope.file = file;
         },function(msg){
             alert(msg);
         });
-	
+	   */
 
         //an array of files selected
         $scope.files = [];
