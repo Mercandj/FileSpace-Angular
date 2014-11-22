@@ -81,18 +81,18 @@ app.controller('FileCtrl',
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
-            
+            */
+            /*
             $upload.upload({
-                url: 'api/upload',
+                url: URL_SERVER+'file',
                 method: 'POST',
-                data: angular.toJson($scope.model),
                 file: file
             }).progress(function (evt) {
                 $scope.uploadProgress = parseInt(100.0 * evt.loaded / evt.total, 10);
             }).success(function (data) {
                 //do something
             });
-            
+            */
             /*
             $http({
                 method: 'POST',
