@@ -1,10 +1,12 @@
 app.factory('FileFactory', function($scope, $location, $http, $q, myCache) {
     var factory = {
-        files : false,
+        file : false,
         all : function() {
             var deferred = $q.defer();
-            if(factory.files !== false){
-                deferred.resolve(factory.files);
+
+            if(factory.file !== false) {
+                console.log('file.js : factory.file !== false');
+                deferred.resolve(factory.fil);
             }
             else {
                 $http({
@@ -18,8 +20,8 @@ app.factory('FileFactory', function($scope, $location, $http, $q, myCache) {
 
                 })
                 .success(function(data,status) {
-                    factory.files = data;
-                    deferred.resolve(factory.files);
+                    factory.file = data;
+                    deferred.resolve(factory.file);
                 })
                 .error(function(data,status) {
                     if(status == 401)
