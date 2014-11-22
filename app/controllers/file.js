@@ -1,5 +1,5 @@
 app.controller('FileCtrl',
-	function($scope, $location, $http, $q, Base64, myCache, myFileUpload) {
+	function($scope, $location, $http, $q, $upload, Base64, myCache, myFileUpload) {
 	/*
     $scope.file = FileFactory.all().then(function(file) {
         $scope.file = file;
@@ -60,6 +60,7 @@ app.controller('FileCtrl',
                 file
             );
             */
+            /*
             var fd = new FormData();
             fd.append('file', file);
             $http.post(URL_SERVER+'file', fd, {
@@ -80,8 +81,17 @@ app.controller('FileCtrl',
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
-
-
+            
+            $upload.upload({
+                url: 'api/upload',
+                method: 'POST',
+                data: angular.toJson($scope.model),
+                file: file
+            }).progress(function (evt) {
+                $scope.uploadProgress = parseInt(100.0 * evt.loaded / evt.total, 10);
+            }).success(function (data) {
+                //do something
+            });
             
             /*
             $http({
