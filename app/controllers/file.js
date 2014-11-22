@@ -1,5 +1,5 @@
 app.controller('FileCtrl',
-	function($scope, FileFactory) {
+	function($scope/*, FileFactory*/) {
 	/*
     $scope.file = FileFactory.all().then(function(file) {
         $scope.file = file;

@@ -1,5 +1,5 @@
-app.factory('FileFactory', ['$scope', '$location', '$http', '$q', 'myCache',
-    function($scope, $location, $http, $q, myCache) {
+app.factory('FileFactory',
+    function($scope/*, $location, $http, $q, myCache*/) {
 
         
         var factory = {
