@@ -1,5 +1,5 @@
 app.controller('FileCtrl',
-	function($scope, $location, $http, $q, $upload, Base64, myCache, myFileUpload) {
+	function($scope, $location, $http, $q, Base64, myCache, fileService) {
 	   /*
         $scope.file = FileFactory.all().then(function(file) {
             $scope.file = file;
@@ -52,7 +52,7 @@ app.controller('FileCtrl',
             var file = $scope.files[0];
             console.log('file is ' + JSON.stringify(file));
             
-            myFileUpload.uploadFileToUrl(
+            fileService.uploadFileToUrl(
                 URL_SERVER+'file',
                 myCache.get('myData'),
                 file

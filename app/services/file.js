@@ -46,9 +46,10 @@ app.factory('FileFactory',
     }
 );
 
-app.service('myFileUpload', ['$http', 'myCache', 
+app.service('fileService', ['$http', 'myCache', 
     function ($http, myCache) {
-        this.uploadFileToUrl = function(uploadUrl, auth, file){
+        this.uploadFileToUrl = function(uploadUrl, auth, file) {
+            /*
             var fd = new FormData();
             fd.append('file', file);
             $http.post(uploadUrl, fd, {
@@ -69,6 +70,7 @@ app.service('myFileUpload', ['$http', 'myCache',
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
+            */
         }
     }
 ]);
