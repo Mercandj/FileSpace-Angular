@@ -12,8 +12,8 @@
        	 </a>
     </article>
 
-
-    <input type="file" file-model="myFile"/>
-    <button ng-click="uploadFile()">Upload</button>
-
+    <form ng-submit="uploadFile()">
+	    <input type="file" ng-file-select="onFileSelect($files)">
+	    <button type="submit">Upload</button>
+	</form>
 </section>
