@@ -7,7 +7,7 @@ app.factory('FileFactory',
             all : function() {
                 
                 var deferred = $q.defer();
-                
+                /*
                 if(factory.file !== false) {
                     console.log('file.js : factory.file !== false');
                     deferred.resolve(factory.file);
@@ -36,7 +36,7 @@ app.factory('FileFactory',
                             deferred.reject('Cannot get files');
                     });
                 }
-                
+                */
                 return deferred.promise;
             },
         }
