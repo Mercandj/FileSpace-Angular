@@ -19,8 +19,13 @@ app.controller('UserCtrl',
 		    .success(function(data, status, headers, config) {
 		        console.log(status + " : " + JSON.stringify(data));
 
-		        myCache.put('myData', data);
+		        myCache.put('myData', Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)));
 		        console.log("CACHE : " + myCache.get("myData"));
+
+		        if(data.succeed === true)
+		        	console.log("succeed = true");
+		        else
+		        	console.log("succeed = false");
 
 		    })
 		    .error(function(data, status, headers, config) {
