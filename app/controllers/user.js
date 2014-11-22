@@ -1,5 +1,5 @@
 app.controller('UserCtrl', 
-	function($scope, $http, $q, Base64, myCache) {
+	function($scope, $location, $http, $q, Base64, myCache) {
 
 	    $scope.user = {};
 	    var deferred = $q.defer();
@@ -22,8 +22,7 @@ app.controller('UserCtrl',
 
 		        if(data.succeed === true) {
 		        	myCache.put('myData', Base64.encode($scope.user.username + ':' + hex_sha1($scope.user.password)));
-		        	console.log("CACHE : " + myCache.get("myData"));
-		        	return myCache.get("myData");
+		        	$location.path( "/home" );
 		        }
 
 		    })
