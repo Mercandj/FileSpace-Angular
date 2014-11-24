@@ -36,8 +36,6 @@ app.controller('FileCtrl',
             	$scope.files = data.result;
             	deferred.resolve(data.result);
             }
-            else
-                $location.path( "/" );
         })
         .error(function(data,status) {
             if(status == 401)

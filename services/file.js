@@ -48,6 +48,8 @@ app.factory('FileFactory',
 app.service('fileService', ['$http', 'myCache', 
     function ($http, myCache) {
         this.uploadFileToUrl = function(p_url, p_auth, p_file) {
+
+            console.log("fileService Result : " + JSON.stringify(data.result));
             
             var fd = new FormData();
             fd.append('file', p_file);
@@ -70,8 +72,6 @@ app.service('fileService', ['$http', 'myCache',
                     console.log("Result : " + JSON.stringify(data.result));
 
                 }
-                else
-                    $location.path( "/" );
             })
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
