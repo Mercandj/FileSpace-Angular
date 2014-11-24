@@ -59,7 +59,7 @@ app.service('fileService', ['$http', 'myCache',
                 transformRequest: angular.identity,
                 headers: { 
                     'Authorization':'Basic '+ p_auth,
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': undefined
                 }
             })
             /*
