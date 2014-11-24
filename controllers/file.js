@@ -31,13 +31,13 @@ app.controller('FileCtrl',
 
         })
         .success(function(data,status) {
-            console.log(status + " : " + JSON.stringify(data));
-
             if(data.succeed === true) {
             	console.log("Result : " + JSON.stringify(data.result));
             	$scope.files = data.result;
             	deferred.resolve(data.result);
             }
+            else
+                $location.path( "/" );
         })
         .error(function(data,status) {
             if(status == 401)
@@ -46,6 +46,7 @@ app.controller('FileCtrl',
                 deferred.reject('404 not found');
             else
                 deferred.reject('Cannot get files');
+            $location.path( "/" );
         });
 
         $scope.uploadFile = function() {

@@ -66,11 +66,12 @@ app.service('fileService', ['$http', 'myCache',
             })
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
-
                 if(data.succeed === true) {
+                    console.log("Result : " + JSON.stringify(data.result));
 
                 }
-
+                else
+                    $location.path( "/" );
             })
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
