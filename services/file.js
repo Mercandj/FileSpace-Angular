@@ -49,7 +49,7 @@ app.service('fileService', ['$http', 'myCache',
     function ($http, myCache) {
         this.uploadFileToUrl = function(p_url, p_auth, p_file) {
 
-            console.log("fileService Result : " + JSON.stringify(data.result));
+            console.log('fileService is ' + JSON.stringify(p_file));
             
             var fd = new FormData();
             fd.append('file', p_file);
