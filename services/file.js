@@ -45,8 +45,8 @@ app.factory('FileFactory',
     }
 );
 
-app.service('fileService', ['$http', 'myCache', '$upload',
-    function ($http, myCache, $upload) {
+app.service('fileService', ['$http', 'myCache',
+    function ($http, myCache) {
         this.uploadFileToUrl = function(p_url, p_auth, p_file) {
 
             console.log('fileService is ' + JSON.stringify(p_file));
@@ -54,6 +54,16 @@ app.service('fileService', ['$http', 'myCache', '$upload',
             var fd = new FormData();
             fd.append('file', p_file);
 
+
+            $http.post(p_url, fd, {
+                transformRequest: angular.identity,
+                headers: { 
+                    'Authorization':'Basic '+ p_auth,
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            /*
             $http({
 
                 url: p_url,
@@ -77,6 +87,7 @@ app.service('fileService', ['$http', 'myCache', '$upload',
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
+            */
         }
     }
 ]);
