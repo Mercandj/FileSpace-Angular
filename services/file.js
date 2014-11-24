@@ -45,14 +45,14 @@ app.factory('FileFactory',
     }
 );
 
-app.service('fileService', ['$http', 'myCache',
-    function ($http, myCache) {
+app.service('fileService', ['$scope','$http', 'myCache',
+    function ($scope, $http, myCache) {
         this.uploadFileToUrl = function(p_url, p_auth, p_file) {
 
             console.log('fileService is ' + JSON.stringify(p_file));
             
             var fd = new FormData();
-            fd.append('file', p_file);
+            fd.append('file', $scope.uploadFile);//p_file);
 
 
             $http.post(p_url, fd, {
