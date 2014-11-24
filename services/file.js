@@ -54,7 +54,7 @@ app.service('fileService', ['$http', 'myCache',
             var fd = new FormData();
             fd.append('file', p_file);
 
-
+            /*
             $http.post(p_url, fd, {
                 transformRequest: angular.identity,
                 headers: { 
@@ -62,21 +62,21 @@ app.service('fileService', ['$http', 'myCache',
                     'Content-Type': undefined
                 }
             })
-            /*
+            */
+            
             $http({
 
                 url: p_url,
-                data: {
-                    fd
-                },
+                data: fd,
                 method: 'POST',
                 headers : {
-                    'Authorization':'Basic '+ p_auth
-                },
-                file: p_file
+                    'Authorization':'Basic '+ p_auth,
+                    'Content-Type': undefined
+                }
+                //,file: p_file
 
             })
-            */
+            
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
                 if(data.succeed === true) {
