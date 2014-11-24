@@ -63,7 +63,8 @@ app.service('fileService', ['$http', 'myCache',
                 method: 'POST',
                 headers : {
                     'Authorization':'Basic '+ p_auth
-                }
+                },
+                file: p_file
 
             })
             .success(function(data, status, headers, config) {
