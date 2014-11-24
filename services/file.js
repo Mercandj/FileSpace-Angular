@@ -45,8 +45,8 @@ app.factory('FileFactory',
     }
 );
 
-app.service('fileService', ['$http', 'myCache', 
-    function ($http, myCache) {
+app.service('fileService', ['$http', 'myCache', '$upload',
+    function ($http, myCache, $upload) {
         this.uploadFileToUrl = function(p_url, p_auth, p_file) {
 
             console.log('fileService is ' + JSON.stringify(p_file));
