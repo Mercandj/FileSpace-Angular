@@ -61,8 +61,7 @@ app.service('fileService', ['$http', 'myCache',
                     'Authorization':'Basic '+ p_auth,
                     'Content-Type': 'multipart/form-data'
                 }
-            });
-
+            })
             /*
             $http({
 
@@ -77,6 +76,7 @@ app.service('fileService', ['$http', 'myCache',
                 file: p_file
 
             })
+            */
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
                 if(data.succeed === true) {
@@ -87,7 +87,6 @@ app.service('fileService', ['$http', 'myCache',
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
-            */
         }
     }
 ]);
