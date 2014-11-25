@@ -9,15 +9,15 @@ app.controller('FileCtrl',
 	    */
 
         //an array of files selected
-        $scope.files = [];
+        //$scope.files = [];
 
         //listen for the file selected event
-        $scope.$on("fileSelected", function (event, args) {
+        /*$scope.$on("fileSelected", function (event, args) {
             $scope.$apply(function () {            
                 //add the file object to the scope's files collection
                 $scope.files.push(args.file);
             });
-        });
+        });*/
 
 		var deferred = $q.defer();
 		$http({
@@ -33,7 +33,7 @@ app.controller('FileCtrl',
         .success(function(data,status) {
             if(data.succeed === true) {
             	console.log("Result : " + JSON.stringify(data.result));
-            	$scope.files = data.result;
+            	//$scope.files = data.result;
             	deferred.resolve(data.result);
             }
         })
@@ -63,6 +63,8 @@ app.controller('FileCtrl',
                 file
             );
             */
+
+            console.log('file is ' + JSON.stringify($scope.files[0]));
 
             var fd = new FormData();
             angular.forEach($scope.files, function(file) {
