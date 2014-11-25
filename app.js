@@ -7,21 +7,27 @@ app.config(function($routeProvider){
 		.otherwise({redirectTo : '/'});
 });
 
-app.directive('fileUpload', function () {
+app.directive('fileInput', ['$parse', function ($parse) {
     return {
         scope: true,        //create a new scope
         link: function (scope, el, attrs) {
             el.bind('change', function (event) {
+
+                $parse(attrs.fileInput)
+                .assign(scope,el[0].files)
+                scope.$apply();
+                /*
                 var files = event.target.files;
                 //iterate files since 'multiple' may be specified on the element
                 for (var i = 0;i<files.length;i++) {
                     //emit event upward
                     scope.$emit("fileSelected", { file: files[i] });
-                }                                       
+                }
+                */
             });
         }
     };
-});
+}]);
 
 app.factory('Base64', function() {
     var keyStr = 'ABCDEFGHIJKLMNOP' +

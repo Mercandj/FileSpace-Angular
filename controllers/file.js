@@ -47,7 +47,12 @@ app.controller('FileCtrl',
             $location.path( "/" );
         });
 
-        $scope.uploadFile = function() {
+        $scope.fileChanged = function(elm) {
+            $scope.files = elm.files;
+            $scope.$apply();
+        }
+
+        $scope.upload = function() {
             /*
             var file = $scope.files[0];
             console.log('file is ' + JSON.stringify(file));
@@ -79,8 +84,6 @@ app.controller('FileCtrl',
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
-
-
         };
 	}
 );
