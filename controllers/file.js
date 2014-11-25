@@ -1,23 +1,12 @@
 app.controller('FileCtrl',
 	function($scope, $location, $http, $q, Base64, myCache, fileService) {
-	   /*
+	    /*
         $scope.file = FileFactory.all().then(function(file) {
             $scope.file = file;
         },function(msg){
             alert(msg);
         });
 	    */
-
-        //an array of files selected
-        //$scope.files = [];
-
-        //listen for the file selected event
-        /*$scope.$on("fileSelected", function (event, args) {
-            $scope.$apply(function () {            
-                //add the file object to the scope's files collection
-                $scope.files.push(args.file);
-            });
-        });*/
 
 		var deferred = $q.defer();
 		$http({
@@ -53,19 +42,6 @@ app.controller('FileCtrl',
         }
 
         $scope.upload = function() {
-            /*
-            var file = $scope.files[0];
-            console.log('file is ' + JSON.stringify(file));
-            
-            fileService.uploadFileToUrl(
-                URL_SERVER+'file',
-                myCache.get('myData'),
-                file
-            );
-            */
-
-            console.log('file is ' + JSON.stringify($scope.files[0]));
-
             var fd = new FormData();
             angular.forEach($scope.files, function(file) {
                 fd.append('file', file);    

@@ -12,18 +12,8 @@ app.directive('fileInput', ['$parse', function ($parse) {
         restrict:'A',
         link: function (scope, elm, attrs) {
             elm.bind('change', function () {
-
-                $parse(attrs.fileInput)
-                .assign(scope,elm[0].files)
+                $parse(attrs.fileInput).assign(scope,elm[0].files);
                 scope.$apply();
-                /*
-                var files = event.target.files;
-                //iterate files since 'multiple' may be specified on the element
-                for (var i = 0;i<files.length;i++) {
-                    //emit event upward
-                    scope.$emit("fileSelected", { file: files[i] });
-                }
-                */
             });
         }
     };
