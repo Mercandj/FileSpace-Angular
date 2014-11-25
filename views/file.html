@@ -13,7 +13,7 @@
     </article>
 
     <div ng-controller="FileCtrl">
-	    <input type="file" id="uploadFile" file-upload multiple/>
+	    <input type="file" file-input="files" multiple/>
 	    <ul>
 	        <li ng-repeat="file in files">{{file.name}}</li>
 	    </ul>
