@@ -42,6 +42,14 @@ app.controller('FileCtrl',
         }
 
         $scope.upload = function() {
+
+            fileService.uploadFileToUrl(
+                URL_SERVER+'file',
+                myCache.get('myData'),
+                $scope.files
+                );
+
+            /*
             var fd = new FormData();
             angular.forEach($scope.files, function(file) {
                 fd.append('file', file);    
@@ -56,13 +64,13 @@ app.controller('FileCtrl',
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
                 if(data.succeed === true) {
-                    console.log("Result : " + JSON.stringify(data.result));
 
                 }
             })
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
+            */
         };
 	}
 );

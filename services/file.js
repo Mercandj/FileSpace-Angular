@@ -40,21 +40,17 @@ app.factory('FileFactory',
             },
         }
 
-        return factory;
-        
+        return factory;        
     }
 );
 
 app.service('fileService', ['$http', 'myCache',
     function ($http, myCache) {
-        this.uploadFileToUrl = function(p_url, p_auth, p_file) {
-
-            console.log('fileService is ' + JSON.stringify(p_file));
-            
+        this.uploadFileToUrl = function(p_url, p_auth, p_filesArray) {
             var fd = new FormData();
-            fd.append('file', p_file);
-
-            
+            angular.forEach(p_filesArray, function(file) {
+                fd.append('file', file);    
+            })            
             $http.post(p_url, fd, {
                 transformRequest: angular.identity,
                 headers: { 
@@ -62,31 +58,16 @@ app.service('fileService', ['$http', 'myCache',
                     'Content-Type': undefined
                 }
             })
-            
-            /*
-            $http({
-
-                url: p_url,
-                data: fd,
-                method: 'POST',
-                headers : {
-                    'Authorization':'Basic '+ p_auth,
-                    'Content-Type': undefined
-                }
-                //,file: p_file
-
-            })
-            */
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
                 if(data.succeed === true) {
-                    console.log("Result : " + JSON.stringify(data.result));
 
                 }
             })
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
+
         }
     }
 ]);
