@@ -52,7 +52,7 @@ app.service('fileService', ['$http', 'myCache',
             console.log('fileService is ' + JSON.stringify(p_file));
             
             var fd = new FormData();
-            fd.append('file', $scope.files[0]);
+            fd.append('file', p_file);
 
             
             $http.post(p_url, fd, {
