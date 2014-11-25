@@ -42,35 +42,11 @@ app.controller('FileCtrl',
         }
 
         $scope.upload = function() {
-
             fileService.uploadFileToUrl(
                 URL_SERVER+'file',
                 myCache.get('myData'),
                 $scope.files
-                );
-
-            /*
-            var fd = new FormData();
-            angular.forEach($scope.files, function(file) {
-                fd.append('file', file);    
-            })            
-            $http.post(URL_SERVER+'file', fd, {
-                transformRequest: angular.identity,
-                headers: { 
-                    'Authorization':'Basic '+ myCache.get('myData'),
-                    'Content-Type': undefined
-                }
-            })
-            .success(function(data, status, headers, config) {
-                console.log(status + " : " + JSON.stringify(data));
-                if(data.succeed === true) {
-
-                }
-            })
-            .error(function(data, status, headers, config) {
-                console.log(status + " : " + JSON.stringify(data));
-            });
-            */
+            );
         };
 	}
 );

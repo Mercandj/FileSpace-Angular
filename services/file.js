@@ -60,12 +60,14 @@ app.service('fileService', ['$http', 'myCache',
             })
             .success(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
-                if(data.succeed === true) {
-
-                }
+                if(data.succeed === true)
+                    alert('Upload succeed!');
+                else
+                    alert('Upload failed : 200!');
             })
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
+                alert('Upload failed : '+status+"!");
             });
 
         }
