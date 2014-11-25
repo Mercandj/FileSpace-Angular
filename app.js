@@ -9,12 +9,12 @@ app.config(function($routeProvider){
 
 app.directive('fileInput', ['$parse', function ($parse) {
     return {
-        scope: true,        //create a new scope
-        link: function (scope, el, attrs) {
-            el.bind('change', function (event) {
+        restrict:'A',
+        link: function (scope, elm, attrs) {
+            elm.bind('change', function () {
 
                 $parse(attrs.fileInput)
-                .assign(scope,el[0].files)
+                .assign(scope,elm[0].files)
                 scope.$apply();
                 /*
                 var files = event.target.files;

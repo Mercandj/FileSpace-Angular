@@ -47,7 +47,7 @@ app.controller('FileCtrl',
             $location.path( "/" );
         });
 
-        $scope.fileChanged = function(elm) {
+        $scope.filesChanged = function(elm) {
             $scope.files = elm.files;
             $scope.$apply();
         }
@@ -65,8 +65,9 @@ app.controller('FileCtrl',
             */
 
             var fd = new FormData();
-            fd.append('file', $scope.files[0]);
-            
+            angular.forEach($scope.files, function(file) {
+                fd.append('file', file);    
+            })            
             $http.post(URL_SERVER+'file', fd, {
                 transformRequest: angular.identity,
                 headers: { 
