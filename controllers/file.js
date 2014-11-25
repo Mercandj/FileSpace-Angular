@@ -48,7 +48,7 @@ app.controller('FileCtrl',
         });
 
         $scope.uploadFile = function() {
-            //var file = $scope.uploadFile;
+            /*
             var file = $scope.files[0];
             console.log('file is ' + JSON.stringify(file));
             
@@ -57,6 +57,30 @@ app.controller('FileCtrl',
                 myCache.get('myData'),
                 file
             );
+            */
+
+            var fd = new FormData();
+            fd.append('file', $scope.files[0]);
+            
+            $http.post(URL_SERVER+'file', fd, {
+                transformRequest: angular.identity,
+                headers: { 
+                    'Authorization':'Basic '+ myCache.get('myData'),
+                    'Content-Type': undefined
+                }
+            })
+            .success(function(data, status, headers, config) {
+                console.log(status + " : " + JSON.stringify(data));
+                if(data.succeed === true) {
+                    console.log("Result : " + JSON.stringify(data.result));
+
+                }
+            })
+            .error(function(data, status, headers, config) {
+                console.log(status + " : " + JSON.stringify(data));
+            });
+
+
         };
 	}
 );
