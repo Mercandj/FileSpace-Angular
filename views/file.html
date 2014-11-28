@@ -12,11 +12,12 @@
        	 </a>
     </article>
 
-    <div ng-controller="FileCtrl">
-	    <input type="file" file-input="files" multiple/>
-	    <ul>
-	        <li ng-repeat="file in files">{{file.name}}</li>
-	    </ul>
-	    <button type="submit" ng-click="upload()">Upload</button>
-	</div>
+    <div ng-controller="FileCtrl" id="upload">
+      <input type="file" file-input="files" multiple/>
+      <ul>
+        <li ng-repeat="file in files">{{file.name}}</li>
+      </ul>
+      <button type="submit" ng-click="upload()">Upload</button>
+    </div>
+    
 </section>

@@ -53,6 +53,18 @@ section article p {
   font-family: 'Open Sans', sans-serif;
   text-decoration: none;
 }
+section article #upload input {
+  display: block;
+  box-sizing: border-box;
+  margin: 13px auto;
+  width: 250px;
+  height: 40px;
+  padding: 2px 10px;
+  border: none;
+  font-size: 1.1rem;
+  color: #727272;
+  background: white;
+}
 form {
   background: #fafafa;
   width: 300px;

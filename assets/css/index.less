@@ -21,6 +21,7 @@
 	font-weight: normal;
 	text-decoration: none;
 }
+
 a{
 	color:inherit;
 }
@@ -40,7 +41,6 @@ body{
 	margin:auto;
 }
 
-
 header{
 	padding: 3em 0;
 
@@ -57,7 +57,7 @@ section{
 	border:1px solid #dbdbdb;
 	border-radius: @border-radius;
 
-	article{	
+	article{
 		a{
 			display:table;
 			width:100%;
@@ -78,6 +78,20 @@ section{
 			text-decoration: none;
 		}
 
+        #upload{
+            input{
+		        display:block;
+		        box-sizing: border-box;
+		        margin: 13px auto;
+		        width: 250px;
+		        height: 40px;
+		        padding: 2px 10px;
+		        border:none;
+		        font-size: @p;
+		        color:@grey;
+		        background:white;
+	        }
+        }
 		
 	}
 }
