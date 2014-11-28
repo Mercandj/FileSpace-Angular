@@ -23,6 +23,7 @@ app.controller('FileCtrl',
             if(data.succeed === true) {
             	console.log("Result : " + JSON.stringify(data.result));
             	//$scope.files = data.result;
+                $scope.filesOnline = data.result;
             	deferred.resolve(data.result);
             }
         })
