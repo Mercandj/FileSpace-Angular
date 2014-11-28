@@ -53,7 +53,20 @@ section article p {
   font-family: 'Open Sans', sans-serif;
   text-decoration: none;
 }
-section article #upload input {
+section #upload {
+  background: #fafafa;
+  width: 300px;
+  margin: 0 auto;
+  top: 20%;
+  vertical-align: middle;
+}
+section #upload h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 25px 0 15px;
+  font-weight: normal;
+}
+section #upload input {
   display: block;
   box-sizing: border-box;
   margin: 13px auto;
@@ -64,6 +77,29 @@ section article #upload input {
   font-size: 1.1rem;
   color: #727272;
   background: white;
+}
+section #upload ::-webkit-input-placeholder {
+  font-size: 0.9rem;
+}
+section #upload ::-moz-placeholder {
+  font-size: 0.9rem;
+}
+section #upload :-ms-input-placeholder {
+  font-size: 0.9rem;
+}
+section #upload input:-moz-placeholder {
+  font-size: 0.9rem;
+}
+section #upload button {
+  cursor: pointer;
+  display: block;
+  width: 250px;
+  height: 40px;
+  margin: 25px auto;
+  border: none;
+  background: #26aeee;
+  color: white;
+  text-transform: uppercase;
 }
 form {
   background: #fafafa;
