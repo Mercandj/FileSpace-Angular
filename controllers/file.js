@@ -49,5 +49,18 @@ app.controller('FileCtrl',
                 $scope.files
             );
         };
+
+        $scope.download = function(url) {
+            $http({
+
+                url: url,
+                method: 'GET',
+                headers : {
+                    'Authorization':'Basic '+ myCache.get('myData'),
+                    'Content-Type':'application/json',
+                }
+
+            });
+        };
 	}
 );
