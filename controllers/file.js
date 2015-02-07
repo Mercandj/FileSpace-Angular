@@ -10,14 +10,12 @@ app.controller('FileCtrl',
 
 		var deferred = $q.defer();
 		$http({
-
             url: URL_SERVER+'file',
             method: 'GET',
             headers : {
                 'Authorization':'Basic '+ myCache.get('myData'),
                 'Content-Type':'application/json',
             }
-
         })
         .success(function(data,status) {
             if(data.succeed === true) {
@@ -50,16 +48,27 @@ app.controller('FileCtrl',
             );
         };
 
-        $scope.download = function(url) {
+        $scope.download = function(file) {
             $http({
-
-                url: url,
+                url: URL_SERVER+'file/'+file.id,
                 method: 'GET',
                 headers : {
                     'Authorization':'Basic '+ myCache.get('myData'),
                     'Content-Type':'application/json',
                 }
-
+            })
+            .success(function(data,status) {
+                var fileTMP = new Blob([ data ], {
+                    type : 'application/csv'
+                });
+                //trick to download store a file having its URL
+                var fileURL = URL.createObjectURL(fileTMP);
+                var a         = document.createElement('a');
+                a.href        = fileURL; 
+                a.target      = '_blank';
+                a.download    = file.url;
+                document.body.appendChild(a);
+                a.click();
             });
         };
 	}

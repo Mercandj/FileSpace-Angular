@@ -4,13 +4,13 @@
 
 <section>
 
-    <article ng-repeat="file in filesOnline">
-    	<a ng-click="download('http://mercandalli.com/Jarvis-API/file/{{file.id}}')">
-        	<p>{{file.url}}</p>
-      	  	<p>{{file.size}}</p>
-       	 	<p>{{file.date_creation}}</p>
-       	 </a>
-    </article>
+  <article ng-repeat="file in filesOnline">
+    <a ng-click="download(file)">
+      <p>{{file.url}}</p>
+        <p>{{file.size}}</p>
+      <p>{{file.date_creation}}</p>
+    </a>
+  </article>
 
 </section>
 
