@@ -5,10 +5,9 @@
 <section>
 
   <article ng-repeat="file in filesOnline">
-    <a ng-click="download(file)">
-      <p>{{file.url}}</p>
-        <p>{{file.size}}</p>
-      <p>{{file.date_creation}}</p>
+    <a title="{{file.date_creation}}" ng-click="download(file)">
+      <p class="width80">{{file.url}}</p>
+      <p class="width20">{{file.size}}</p>
     </a>
   </article>
 

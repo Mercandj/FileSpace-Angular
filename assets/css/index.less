@@ -36,6 +36,34 @@ body{
 	font-size:62.5%;
 }
 
+.width100{
+	width: 100%;
+}
+.width85{
+	width: 85%;
+}
+.width80{
+	width: 80%;
+}
+.width75{
+	width: 75%;
+}
+.width50{
+	width: 50%;
+}
+.width35{
+	width: 35%;
+}
+.width25{
+	width: 25%;
+}
+.width20{
+	width: 20%;
+}
+.width15{
+	width: 15%;
+}
+
 #wrapper{
 	width:90%;
 	margin:auto;
@@ -62,7 +90,7 @@ section{
 			display:table;
 			width:100%;
 			table-layout: fixed;
-			padding: 2em 3em;
+			padding: 2em 1em 2em 1em;
 			box-sizing: border-box;	
 
 			&:hover{
@@ -73,14 +101,18 @@ section{
 		p{
 			color: @grey;
 			font-size:@p;
-			display:table-cell;		
+			display:table-cell;
 			font-family: 'Open Sans', sans-serif;
 			text-decoration: none;
+			overflow: hidden;
+			white-space: nowrap;
+			padding-left: 0.8em;
 		}
 	}
 }
 
 #upload{
+
 	background:white;
 	border:1px solid #dbdbdb;
 	border-radius: @border-radius;
@@ -99,7 +131,7 @@ section{
 		display:block;
 		box-sizing: border-box;
 		margin: 13px auto;
-		width: 500px;
+		width: 80%;
 		height: 40px;
 		padding: 2px 10px;
 		border:none;
@@ -116,7 +148,7 @@ section{
 	button{
 		cursor: pointer;
 		display: block;
-		width: 500px;
+		width: 80%;
 		height: 40px;
 		margin: 25px auto;
 		border:none;

@@ -20,7 +20,9 @@ app.controller('FileCtrl',
         .success(function(data,status) {
             if(data.succeed === true) {
             	console.log("Result : " + JSON.stringify(data.result));
-            	//$scope.files = data.result;
+                data.result.forEach(function(file) {
+                    file.size = bytesToSize(file.size);
+                });                
                 $scope.filesOnline = data.result;
             	deferred.resolve(data.result);
             }
