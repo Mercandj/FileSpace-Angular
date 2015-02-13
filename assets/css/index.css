@@ -18,62 +18,68 @@ body {
   background: #f2f2f2;
   font-size: 62.5%;
 }
-.width100{
+.width100 {
   width: 100%;
 }
-.width85{
+.width85 {
   width: 85%;
 }
-.width80{
+.width80 {
   width: 80%;
 }
-.width75{
+.width75 {
   width: 75%;
 }
-.width50{
+.width50 {
   width: 50%;
 }
-.width35{
+.width35 {
   width: 35%;
 }
-.width25{
+.width25 {
   width: 25%;
 }
-.width20{
+.width20 {
   width: 20%;
 }
-.width15{
+.width15 {
   width: 15%;
 }
-#wrapper {
-  width: 90%;
-  margin: auto;
+#wrapper header {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  padding: 1.5em 5%;
+  background: #26aeee;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
 }
-header {
-  padding: 3em 0;
-}
-header h1 {
+#wrapper header h1 {
   display: block;
+  left: 5%;
   font-size: 2.5rem;
   font-family: 'Montserrat', sans-serif;
-  color: #26aeee;
+  color: white;
 }
-section {
+#wrapper section.content {
+  position: relative;
+  width: 90%;
+  top: 10em;
+  margin: auto;
   background: white;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
 }
-section article a {
+#wrapper section.content article a {
   display: table;
   width: 100%;
   table-layout: fixed;
   padding: 2em 1em 2em 1em;
   box-sizing: border-box;
 }
-section article a:hover {
+#wrapper section.content article a:hover {
   background: rgba(38, 174, 238, 0.05);
 }
-section article p {
+#wrapper section.content article p {
   color: #727272;
   font-size: 1.1rem;
   display: table-cell;
@@ -83,21 +89,51 @@ section article p {
   white-space: nowrap;
   padding-left: 0.8em;
 }
-#upload {
+#wrapper .fab {
+  position: fixed;
+  right: 10%;
+  bottom: 20px;
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+#wrapper .fab.blue {
+  background-color: #26aeee;
+}
+#wrapper .fab:active {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  transition-delay: 0s;
+}
+#wrapper .fab > core-icon {
+  margin: 16px;
+}
+#wrapper .fab > core-icon::shadow path {
+  fill: #fff;
+}
+#wrapper footer {
+  display: none;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  margin: auto;
   background: white;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
-  margin: 20px auto;
-  top: 20%;
   vertical-align: middle;
 }
-#upload h1 {
+#wrapper footer h1 {
   text-align: center;
   text-transform: uppercase;
   padding: 25px 0 15px;
   font-weight: normal;
 }
-#upload input {
+#wrapper footer input {
   display: block;
   box-sizing: border-box;
   margin: 13px auto;
@@ -109,19 +145,19 @@ section article p {
   color: #727272;
   background: white;
 }
-#upload ::-webkit-input-placeholder {
+#wrapper footer ::-webkit-input-placeholder {
   font-size: 0.9rem;
 }
-#upload ::-moz-placeholder {
+#wrapper footer ::-moz-placeholder {
   font-size: 0.9rem;
 }
-#upload :-ms-input-placeholder {
+#wrapper footer :-ms-input-placeholder {
   font-size: 0.9rem;
 }
-#upload input:-moz-placeholder {
+#wrapper footer input:-moz-placeholder {
   font-size: 0.9rem;
 }
-#upload button {
+#wrapper footer button {
   cursor: pointer;
   display: block;
   width: 80%;

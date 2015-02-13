@@ -1,8 +1,10 @@
+<!-- http://codepen.io/iraycd/pen/dHrxv -->
+
 <header>
     <h1><a href="/">Jarvis</a></h1>
 </header>
 
-<section>
+<section id="Content" class="content">
 
   <article ng-repeat="file in filesOnline">
     <a title="{{file.date_creation}}" ng-click="download(file)">
@@ -13,10 +15,19 @@
 
 </section>
 
-<div ng-controller="FileCtrl" id="upload">
-  <input type="file" file-input="files" multiple/>
-  <ul>
-    <li ng-repeat="file in files">{{file.name}}</li>
-  </ul>
-  <button type="submit" ng-click="upload()">Upload</button>
+
+<div class="fab blue" onclick="LinkButtonFAB_Click(this)">
+  <core-icon icon="add"></core-icon>
+  <paper-ripple class="circle recenteringTouch" fit></paper-ripple>
 </div>
+
+
+<footer>
+  <div ng-controller="FileCtrl" id="upload">
+    <input type="file" file-input="files" multiple/>
+    <ul>
+      <li ng-repeat="file in files">{{file.name}}</li>
+    </ul>
+    <button type="submit" ng-click="upload()">Upload</button>
+  </div>
+</footer>
