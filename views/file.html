@@ -22,12 +22,34 @@
 </div>
 
 
-<footer>
-  <div ng-controller="FileCtrl" id="upload">
-    <input type="file" file-input="files" multiple/>
-    <ul>
-      <li ng-repeat="file in files">{{file.name}}</li>
-    </ul>
-    <button type="submit" ng-click="upload()">Upload</button>
+<div id="Dialog" class="dialog">
+
+  <div class="content">
+    <div class="title">Upload file</div>
+    <div>Select the file you want to upload.</div>
+
+    
+    <div ng-controller="FileCtrl" id="upload">
+      <input class="input" type="file" file-input="files" multiple/>
+      <ul>
+        <li ng-repeat="file in files">{{file.name}}</li>
+      </ul>
+
+      <div type="submit" ng-click="upload()" class="button label-blue left">
+        <div class="center" fit>UPLOAD</div>
+        <paper-ripple fit></paper-ripple>
+      </div>
+      
+      <div class="button right" onclick="LinkButtonFAB_Click(this)">
+        <div class="center" fit>CANCEL</div>
+        <paper-ripple fit></paper-ripple>
+      </div>
+
+
+    </div>
+
   </div>
-</footer>
+  
+  
+
+</div>
