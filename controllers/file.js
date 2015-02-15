@@ -73,5 +73,50 @@ app.controller('FileCtrl',
                 a.click();
             });
         };
+
+        $scope.edit = function(file) {
+
+            if (file.type === 'txt') {
+                $http({
+                    url: URL_SERVER+'file/'+file.id,
+                    method: 'GET',
+                    headers : {
+                        'Authorization':'Basic '+ myCache.get('myData'),
+                        'Content-Type':'application/json',
+                    }
+                })
+                .success(function(data,status) {
+                    openDialog(file.url, "", 
+                        '<textarea rows="5" name="text" placeholder="YOUR TXT" class="error">'+
+                        data +
+                        '</textarea>'+
+
+                        '<div ng-controller="FileCtrl" ng-click="save()" class="button label-blue left">'+
+                        '  <div class="center" fit>SAVE</div>'+
+                        '  <paper-ripple fit></paper-ripple>'+
+                        '</div>'+
+                        
+                        '<div class="button right" onclick="LinkButtonFAB_Click(this)">'+
+                        '  <div class="center" fit>CANCEL</div>'+
+                        '  <paper-ripple fit></paper-ripple>'+
+                        '</div>'
+
+                    );
+                });
+            }
+            else
+                openDialog(file.url, "Can't edit this type of file.", 
+                    '<div class="button right" onclick="LinkButtonFAB_Click(this)">'+
+                    '  <div class="center" fit>CANCEL</div>'+
+                    '  <paper-ripple fit></paper-ripple>'+
+                    '</div>');
+            
+        };
+
+
+        $scope.save = function() {
+            alert("SAVE ");
+        }
+
 	}
 );

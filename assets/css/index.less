@@ -14,6 +14,55 @@
 @h2 : 1.4rem;
 @p : 1.1rem;
 
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 100;
+  src: local('RobotoDraft Thin'), local('RobotoDraft-Thin'), url(http://fonts.gstatic.com/s/robotodraft/v4/hope9NW9iJ5hh8P5PM_EA9FPPhm6yPYYGACxOp9LMJ4.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/hope9NW9iJ5hh8P5PM_EAyeJLMOzE6CCkidNEpZOseY.woff) format('woff');
+}
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 300;
+  src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwUo2lTMeWA_kmIyWrkNCwPc.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwR_xHqYgAV9Bl_ZQbYUxnQU.woff) format('woff');
+}
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 400;
+  src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(http://fonts.gstatic.com/s/robotodraft/v4/0xES5Sl_v6oyT7dAKuoni44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/0xES5Sl_v6oyT7dAKuoni4bN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 500;
+  src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwbBojE9J5UnpMtv5N3zfxwk.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwSqHEX2q--o2so14pIEl08w.woff) format('woff');
+}
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 700;
+  src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwYlIZu-HDpmDIZMigmsroc4.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwTqR_3kx9_hJXbbyU8S6IN0.woff) format('woff');
+}
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 900;
+  src: local('RobotoDraft Black'), local('RobotoDraft-Black'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwcpPZoEQdaDZ3o3Np19rzJk.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwUExzZ44ka2Lr5i-x5aWr0E.woff) format('woff');
+}
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: italic;
+  font-weight: 400;
+  src: local('RobotoDraft Italic'), local('RobotoDraft-Italic'), url(http://fonts.gstatic.com/s/robotodraft/v4/er-TIW55l9KWsTS1x9bTfsu2Q0OS-KeTAWjgkS85mDg.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/er-TIW55l9KWsTS1x9bTftkZXW4sYc4BjuAIFc1SXII.woff) format('woff');
+}
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: italic;
+  font-weight: 700;
+  src: local('RobotoDraft Bold Italic'), local('RobotoDraft-BoldItalic'), url(http://fonts.gstatic.com/s/robotodraft/v4/5SAvdU0uYYlH8OURAykt549ObOXPY1wUIXqKtDjSdsY.woff2) format('woff2'), url(http://fonts.gstatic.com/s/robotodraft/v4/5SAvdU0uYYlH8OURAykt5wRV2F9RPTaqyJ4QibDfkzM.woff) format('woff');
+}
+
 *{
 	margin:0;
 	padding:0;
@@ -39,6 +88,12 @@ body{
 .width100{
 	width: 100%;
 }
+.width95{
+	width: 95%;
+}
+.width90{
+	width: 90%;
+}
 .width85{
 	width: 85%;
 }
@@ -63,14 +118,20 @@ body{
 .width15{
 	width: 15%;
 }
-
+.width10{
+	width: 10%;
+}
+.width5{
+	width: 5%;
+}
 
 #wrapper{
 
 	header{
 		position: fixed;
 		top: 0;
-		width:100%;
+		left: 0;
+		right: 0;
 		z-index: 1;
 		padding: 1.5em 5%;
 		background:@blue;
@@ -94,11 +155,14 @@ body{
 		border-radius: @border-radius;
 
 		article{
+
+			cursor: pointer;
+
 			a{
 				display:table;
 				width:100%;
 				table-layout: fixed;
-				padding: 2em 1em 2em 1em;
+				padding: 0.8em 1em;
 				box-sizing: border-box;	
 
 				&:hover{
@@ -116,6 +180,14 @@ body{
 				white-space: nowrap;
 				padding-left: 0.8em;
 			}
+
+		    .icon-button {
+		    	padding: 0 1em 0 1em;
+				color: black;
+				font-size: 3.4em;
+				text-align: center;
+		    }
+
 		}
 	}
 	
@@ -132,6 +204,14 @@ body{
 		transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 		transition-delay: 0.2s;
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		cursor: pointer;
+
+		.icon {
+			color: #fff;
+			margin-top: 7px;
+			font-size: 3.4em;
+			text-align: center;
+		}
 	}
 	.fab.blue {
 		background-color: @blue;
@@ -152,20 +232,23 @@ body{
     .dialog {
 		position: fixed;
 		display: inline-block;
+		z-index: 2;
 		margin: auto;
 		top: 100%;
-		left: 20%;
-		width: 60%;
-		height: 300px;
+		left: 15%;
+		width: 70%;
+		height: 60%;
 		vertical-align: top;
 		background-color: #fff;
 		box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
 
-		-webkit-transition: -webkit-transform .4s linear;
-		-moz-transition: -moz-transform .4s linear;
-		-ms-transition: -ms-transform .4s linear;
-		-o-transition: -o-transform .4s linear;
-		transition: transform .4s linear;
+		-webkit-transition: -webkit-transform .4s linear, visibility 0s linear 0.5s;
+		-moz-transition: -moz-transform .4s linear, visibility 0s linear 0.5s;
+		-ms-transition: -ms-transform .4s linear, visibility 0s linear 0.5s;
+		-o-transition: -o-transform .4s linear, visibility 0s linear 0.5s;
+		transition: transform .4s linear, visibility 0s linear 0.5s;
+
+		visibility: hidden;
 
 		.content {
 			height: 170px;
@@ -176,35 +259,63 @@ body{
 		      margin: 0 0 1.2em 0;
 		    }
 
-		    .input {
+		    .placeholder {
 				margin: 2em 0 2em 0;
 			}
 		}
 
 		.button {
+			cursor: pointer;
 			position: absolute;
 			bottom: 1em;
 		}
 		.button.left {
-			left: 1em;
+			left: 0.5em;
 		}
 		.button.right {
-			right: 1em;
+			right: 0.5em;
+		}
+
+
+		textarea {
+			display: block;
+			position: absolute;
+			box-sizing: border-box;
+			width: 93%;
+			margin: 20px 0;
+			bottom: 40px;
+			top: 45px;
+			padding: 20px;
+			border: 1px solid #fff;
+			resize: none;
+			overflow: auto;
+			box-shadow: none;
+			border-radius: 5px;
+			background: #f2f2f2;			
 		}
 
     }
 
     .dialog.shown {
-		-webkit-transform: translateY(-150%);
-		-moz-transform: translateY(-150%);
-		-ms-transform: translateY(-150%);
-		-o-transform: translateY(-150%);
-		transform: translateY(-150%);
+		-webkit-transition: -webkit-transform .4s linear, visibility 0s linear 0s;
+		-moz-transition: -moz-transform .4s linear, visibility 0s linear 0s;
+		-ms-transition: -ms-transform .4s linear, visibility 0s linear 0s;
+		-o-transition: -o-transform .4s linear, visibility 0s linear 0s;
+		transition: transform .4s linear, visibility 0s linear 0s;
+
+		-webkit-transform: translateY(-130%);
+		-moz-transform: translateY(-130%);
+		-ms-transform: translateY(-130%);
+		-o-transform: translateY(-130%);
+		transform: translateY(-130%);
+
+		visibility: visible;
     }
     
     .dialog {
       box-sizing: border-box;
       padding: 16px;
+      overflow: auto;
     }
     
     /* Misc */
