@@ -9,7 +9,7 @@
 
   <article ng-repeat="file in filesOnline">
     <a title="{{file.date_creation}} ">
-      <p class="width90" ng-click="edit(file)">{{file.url}}</p>
+      <p class="width90" ng-click="edit(file)">{{file.name + '.' + file.type}}</p>
       <div class="width10" ng-click="download(file)">
 
         <div class="icon-button fa">&#xf142;</div>
