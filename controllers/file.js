@@ -1,12 +1,5 @@
 app.controller('FileCtrl',
 	function($scope, $location, $http, $q, Base64, myCache, fileService) {
-	    /*
-        $scope.file = FileFactory.all().then(function(file) {
-            $scope.file = file;
-        },function(msg){
-            alert(msg);
-        });
-	    */
 
 		var deferred = $q.defer();
 		$http({
@@ -19,7 +12,7 @@ app.controller('FileCtrl',
         })
         .success(function(data,status) {
             if(data.succeed === true) {
-            	console.log("Result : " + JSON.stringify(data.result));
+            	console.log("Result /file : " + JSON.stringify(data.result));
                 data.result.forEach(function(file) {
                     file.size = bytesToSize(file.size);
                 });                
@@ -36,6 +29,33 @@ app.controller('FileCtrl',
                 deferred.reject('Cannot get files');
             $location.path( "/" );
         });
+
+        $http({
+            url: URL_SERVER+'information',
+            method: 'GET',
+            headers : {
+                'Authorization':'Basic '+ myCache.get('myData'),
+                'Content-Type':'application/json',
+            }
+        })
+        .success(function(data,status) {
+            if(data.succeed === true) {
+                console.log("Result /information : " + JSON.stringify(data.result));
+                $scope.information = data.result;
+                deferred.resolve(data.result);
+            }
+        })
+        .error(function(data,status) {
+            if(status == 401)
+                deferred.reject('401 unauthorized')
+            else if(status == 404)
+                deferred.reject('404 not found');
+            else
+                deferred.reject('Cannot get Informations');
+            $location.path( "/" );
+        });
+
+
 
         $scope.filesChanged = function(elm) {
             $scope.files = elm.files;
