@@ -84,11 +84,11 @@ app.controller('FileCtrl',
                     type : 'application/csv'
                 });
                 //trick to download store a file having its URL
-                var fileURL = URL.createObjectURL(fileTMP);
+                var fileURL   = URL.createObjectURL(fileTMP);
                 var a         = document.createElement('a');
                 a.href        = fileURL; 
                 a.target      = '_blank';
-                a.download    = file.url;
+                a.download    = file.name + '.' + file.type;
                 document.body.appendChild(a);
                 a.click();
             });
