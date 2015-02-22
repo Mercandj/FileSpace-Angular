@@ -15,6 +15,8 @@ app.controller('FileCtrl',
             	console.log("Result /file : " + JSON.stringify(data.result));
                 data.result.forEach(function(file) {
                     file.size = bytesToSize(file.size);
+                    if(!file.directory)
+                        file.name+="."+file.type;
                 });                
                 $scope.filesOnline = data.result;
             	deferred.resolve(data.result);
