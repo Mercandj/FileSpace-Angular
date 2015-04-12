@@ -51,7 +51,10 @@ app.service('fileService', ['$http', 'myCache', '$q',
             var deferred = $q.defer();
             var getProgressListener = function(deferred) {
                 return function(event) {
-                  
+                    if (e.lengthComputable) {
+                        var percentage = e.loaded / e.total;
+                        console.log("upload progress : "+percentage+" %");
+                    }
                 };
             };
 
@@ -73,10 +76,12 @@ app.service('fileService', ['$http', 'myCache', '$q',
                 contentType: false,
                 processData: false,
                 success: function(response, textStatus, jqXHR) {
+                    console.log("success : " + textStatus + " : " + JSON.stringify(response));
                     deferred.resolve(response);
                     alert('Upload succeed!');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("error : " + textStatus);
                     deferred.reject(errorThrown);
                     alert('Upload failed : '+textStatus+'!');
                 },
