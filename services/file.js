@@ -47,10 +47,48 @@ app.factory('FileFactory',
 app.service('fileService', ['$http', 'myCache',
     function ($http, myCache) {
         this.uploadFileToUrl = function(p_url, p_auth, p_filesArray) {
+
+            var deferred = $q.defer();
+            var getProgressListener = function(deferred) {
+                return function(event) {
+                  
+                };
+            };
+
             var fd = new FormData();
             angular.forEach(p_filesArray, function(file) {
                 fd.append('file', file);    
-            })            
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: p_url,
+                data: fd,
+                cache: false,
+                // Force this to be read from FormData
+                contentType: false,
+                processData: false,
+                success: function(response, textStatus, jqXHR) {
+                    deferred.resolve(response);
+                    alert('Upload succeed!');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    deferred.reject(errorThrown);
+                    alert('Upload failed : '+textStatus+'!');
+                },
+                xhr: function() {
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        myXhr.upload.addEventListener(
+                        'progress', getProgressListener(deferred), false);
+                    } else {
+                        $log.log('Upload progress is not supported.');
+                    }
+                    return myXhr;
+                }
+            });
+
+            /*
             $http.post(p_url, fd, {
                 transformRequest: angular.identity,
                 headers: { 
@@ -69,6 +107,7 @@ app.service('fileService', ['$http', 'myCache',
                 console.log(status + " : " + JSON.stringify(data));
                 alert('Upload failed : '+status+'!');
             });
+            */
 
         }
     }
