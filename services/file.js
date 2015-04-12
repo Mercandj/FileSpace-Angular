@@ -50,7 +50,7 @@ app.service('fileService', ['$http', 'myCache', '$q',
 
             var deferred = $q.defer();
             var getProgressListener = function(deferred) {
-                return function(event) {
+                return function(e) {
                     if (e.lengthComputable) {
                         var percentage = e.loaded / e.total;
                         console.log("upload progress : "+percentage+" %");
