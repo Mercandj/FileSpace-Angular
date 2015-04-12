@@ -63,6 +63,10 @@ app.service('fileService', ['$http', 'myCache',
             $.ajax({
                 type: 'POST',
                 url: p_url,
+                headers: { 
+                    'Authorization':'Basic '+ p_auth,
+                    'Content-Type': undefined
+                },
                 data: fd,
                 cache: false,
                 // Force this to be read from FormData
