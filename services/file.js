@@ -52,7 +52,7 @@ app.service('fileService', ['$http', 'myCache', '$q',
             var getProgressListener = function(deferred) {
                 return function(e) {
                     if (e.lengthComputable) {
-                        var percentage = e.loaded / e.total;
+                        var percentage = Math.round((e.loaded / e.total) * 100);
                         console.log("upload progress : "+percentage+" %");
                     }
                 };
@@ -96,28 +96,6 @@ app.service('fileService', ['$http', 'myCache', '$q',
                     return myXhr;
                 }
             });
-
-            /*
-            $http.post(p_url, fd, {
-                transformRequest: angular.identity,
-                headers: { 
-                    'Authorization':'Basic '+ p_auth,
-                    'Content-Type': undefined
-                }
-            })
-            .success(function(data, status, headers, config) {
-                console.log(status + " : " + JSON.stringify(data));
-                if(data.succeed === true)
-                    alert('Upload succeed! '+data.toast);
-                else
-                    alert('Upload failed : Status=200 : '+data.toast);
-            })
-            .error(function(data, status, headers, config) {
-                console.log(status + " : " + JSON.stringify(data));
-                alert('Upload failed : '+status+'!');
-            });
-            */
-
         }
     }
 ]);
