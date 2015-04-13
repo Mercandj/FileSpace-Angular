@@ -258,11 +258,9 @@ app.controller('FileCtrl',
                 
                 xmlhttp.responseType = 'arraybuffer';
 
+                var start = false;
+
                 /*
-                xmlhttp.onload = function() {
-                  processConcatenatedFile( xmlhttp.response );
-                }
-                */
                 // When loaded decode the data
                 xmlhttp.onload = function() {
          
@@ -275,20 +273,31 @@ app.controller('FileCtrl',
                         console.log(e);
                     });
                 }
+                */
+
+                xmlhttp.onreadystatechange = function() {
+                    if (
+                        (xmlhttp.readyState === 4) && 
+                        (xmlhttp.status === 200) && 
+                        (xmlhttp.status !== 404)
+                        ) {
+                        context.decodeAudioData(xmlhttp.response, function(buffer) {
+                            sourceNode.buffer = buffer;
+                            if(!start) {
+                                sourceNode.start(0);
+                                start = true;
+                            }
+                            
+                        });
+                    } 
+                };
                 
         		xmlhttp.addEventListener("progress", function(e) {
                             if (e.lengthComputable) {
                                 var percentage = Math.round((e.loaded / e.total) * 100);
                                 console.log("download progress : "+percentage+" %");
 
-                                // decode the data
-                                context.decodeAudioData(xmlhttp.response, function(buffer) {
-                                    // when the audio is decoded play the sound
-                                    sourceNode.buffer = buffer;
-                                    sourceNode.start(0);
-                                }, function(e) {
-                                    console.log(e);
-                                });
+
                             }
                         }, false);
         		/*xmlhttp.onreadystatechange = function()
