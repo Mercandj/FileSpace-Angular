@@ -264,10 +264,10 @@ app.controller('FileCtrl',
                 }
                 */
                 // When loaded decode the data
-                request.onload = function() {
+                xmlhttp.onload = function() {
          
                     // decode the data
-                    context.decodeAudioData(request.response, function(buffer) {
+                    context.decodeAudioData(xmlhttp.response, function(buffer) {
                         // when the audio is decoded play the sound
                         sourceNode.buffer = buffer;
                         sourceNode.start(0);
