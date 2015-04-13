@@ -231,9 +231,8 @@ app.controller('FileCtrl',
             else if(file.type === 'mp3') {
 
                 openDialog(file.name, "", 
-                '<audio id="media">'+
-                '</audio>
-                <a id="media_status"></a>');
+                '<audio id="media"></audio>'+
+                '<a id="media_status"></a>');
                 var audio = document.getElementById("media");
                 var media_status = document.getElementById("media_status");
 
