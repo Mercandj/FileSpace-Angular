@@ -237,14 +237,7 @@ app.controller('FileCtrl',
         		var xmlhttp = new XMLHttpRequest();
         		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
         		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
-        		/*xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');*/
-                xmlhttp.responseType = 'arraybuffer';
-
-                xmlhttp.onload = function() {
-                  processConcatenatedFile( xmlhttp.response );
-                }
-
-                /*
+        		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');                
         		xmlhttp.addEventListener("progress", function(e) {
                             if (e.lengthComputable) {
                                 var percentage = Math.round((e.loaded / e.total) * 100);
@@ -258,7 +251,7 @@ app.controller('FileCtrl',
         			{
         				mediaElem.src = "data:audio/mpeg;base64," + window.btoa(xmlhttp.responseText);   
         			}
-        		}*/
+        		}
         		xmlhttp.send();
         		
             }
@@ -279,31 +272,3 @@ app.controller('FileCtrl',
 	}
     
 );
-
-function processConcatenatedFile( data ) {
-  var bb = new DataView( data );
-  var offset = 0;
-  while( offset < bb.byteLength ) {
-    var length = bb.getUint32( offset, true );
-    offset += 4;
-    var sound = extractBuffer( data, offset, length );
-    offset += length;
-    createSoundWithBuffer( sound.buffer );
-  }
-}
-function extractBuffer( src, offset, length ) {
-  var dstU8 = new Uint8Array( length );
-  var srcU8 = new Uint8Array( src, offset, length );
-  dstU8.set( srcU8 );
-  return dstU8;
-} 
-function createSoundWithBuffer( buffer ) {
-  
-  var context = new webkitAudioContext();
-  var audioSource = context.createBufferSource();
-  audioSource.connect( context.destination );
-  context.decodeAudioData( buffer, function( res ) {
-    audioSource.buffer = res;
-    audioSource.noteOn( 0 );
-  } );
-}
