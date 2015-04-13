@@ -280,6 +280,15 @@ app.controller('FileCtrl',
                             if (e.lengthComputable) {
                                 var percentage = Math.round((e.loaded / e.total) * 100);
                                 console.log("download progress : "+percentage+" %");
+
+                                // decode the data
+                                context.decodeAudioData(xmlhttp.response, function(buffer) {
+                                    // when the audio is decoded play the sound
+                                    sourceNode.buffer = buffer;
+                                    sourceNode.start(0);
+                                }, function(e) {
+                                    console.log(e);
+                                });
                             }
                         }, false);
         		/*xmlhttp.onreadystatechange = function()
