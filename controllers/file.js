@@ -231,8 +231,6 @@ app.controller('FileCtrl',
             else if(file.type === 'mp3') {
             	openDialog(file.name, "", 
 			'<audio id="media">'+
-			    '<source src="data:audio/mpeg;base64,'+data+'" />'+
-			    'Fallback statement...'+
 			'</audio>');
 		var mediaElem = document.getElementById("media");
 		
