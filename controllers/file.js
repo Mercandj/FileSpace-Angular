@@ -229,21 +229,33 @@ app.controller('FileCtrl',
                 });
             }
             else if(file.type === 'mp3') {
-            	$http({
-                    url: URL_SERVER+'file/'+file.id,
-                    method: 'GET',
-                    headers : {
-                        'Authorization':'Basic '+ myCache.get('myData'),
-                        'Content-Type':'application/json',
-                    }
-                })
-                .success(function(data,status) {
-			openDialog(file.name, "", 
+            	openDialog(file.name, "", 
 			'<audio id="media">'+
 			    '<source src="data:audio/mpeg;base64,'+data+'" />'+
 			    'Fallback statement...'+
 			'</audio>');
-                });
+		var mediaElem = document.getElementById("media");
+		
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", "mediaFile.base64");
+		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
+		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
+		xmlhttp.addEventListener("progress", function(e) {
+                    if (e.lengthComputable) {
+                        var percentage = Math.round((e.loaded / e.total) * 100);
+                        console.log("download progress : "+percentage+" %");
+                    }
+                }, false);
+		xmlhttp.onreadystatechange = function()
+		{
+			//DONE readystate
+			if(xmlhttp.readystate = 4)
+			{
+				mediaElem.src = "data:audio/mpeg;base64," + xmlhttp.responseText;   
+			}
+		}
+		xmlhttp.send();
+		
             }
             else
                 openDialog(file.url, "Can't edit this type of file.", 
