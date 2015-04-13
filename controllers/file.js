@@ -232,8 +232,10 @@ app.controller('FileCtrl',
 
                 openDialog(file.name, "", 
                 '<audio id="media">'+
-                '</audio>');
+                '</audio>
+                <a id="media_status"></a>');
                 var audio = document.getElementById("media");
+                var media_status = document.getElementById("media_status");
 
                 if (! window.AudioContext) {
                     if (! window.webkitAudioContext) {
@@ -279,6 +281,7 @@ app.controller('FileCtrl',
                             if (e.lengthComputable) {
                                 var percentage = Math.round((e.loaded / e.total) * 100);
                                 console.log("download progress : "+percentage+" %");
+                                media_status.innerHTML = "download progress : "+percentage+" %";
                             }
                         }, false);
                 
