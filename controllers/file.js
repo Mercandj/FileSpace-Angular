@@ -277,9 +277,9 @@ app.controller('FileCtrl',
 
                 xmlhttp.onreadystatechange = function() {
                     if (
-                        (xmlhttp.readyState === 4) && 
+                        (xmlhttp.readyState === 4) /*&& 
                         (xmlhttp.status === 200) && 
-                        (xmlhttp.status !== 404)
+                        (xmlhttp.status !== 404*/)
                         ) {
                         context.decodeAudioData(xmlhttp.response, function(buffer) {
                             sourceNode.buffer = buffer;
