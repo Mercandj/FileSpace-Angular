@@ -256,7 +256,7 @@ app.controller('FileCtrl',
         		xmlhttp.onreadystatechange = function()
         		{
         			//DONE readystate
-        			if(xmlhttp.readystate = 4)
+        			if(xmlhttp.readyState==4 && xmlhttp.status==200)
         			{
         				mediaElem.src = "data:audio/mpeg;base64," + window.btoa(xmlhttp.responseText);   
         			}
