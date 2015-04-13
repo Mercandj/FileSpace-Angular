@@ -229,6 +229,23 @@ app.controller('FileCtrl',
                 });
             }
             else if(file.type === 'mp3') {
+
+                if (! window.AudioContext) {
+                    if (! window.webkitAudioContext) {
+                        alert('no audiocontext found');
+                    }
+                    window.AudioContext = window.webkitAudioContext;
+                }
+                var context = new AudioContext();
+                var audioBuffer;
+                var sourceNode;
+
+                // create a buffer source node
+                sourceNode = context.createBufferSource();
+                // and connect to destination
+                sourceNode.connect(context.destination);
+
+
             	openDialog(file.name, "", 
     			'<audio id="media">'+
     			'</audio>');
@@ -246,6 +263,18 @@ app.controller('FileCtrl',
                   processConcatenatedFile( xmlhttp.response );
                 }
                 */
+                // When loaded decode the data
+                request.onload = function() {
+         
+                    // decode the data
+                    context.decodeAudioData(request.response, function(buffer) {
+                        // when the audio is decoded play the sound
+                        sourceNode.buffer = buffer;
+                        sourceNode.start(0);
+                    }, function(e) {
+                        console.log(e);
+                    });
+                }
                 
         		xmlhttp.addEventListener("progress", function(e) {
                             if (e.lengthComputable) {
@@ -253,14 +282,14 @@ app.controller('FileCtrl',
                                 console.log("download progress : "+percentage+" %");
                             }
                         }, false);
-        		xmlhttp.onreadystatechange = function()
+        		/*xmlhttp.onreadystatechange = function()
         		{
         			//DONE readystate
         			if(xmlhttp.readyState==4 && xmlhttp.status==200)
         			{
         				mediaElem.src = "data:audio/mpeg;base64," + window.btoa(xmlhttp.responseText);   
         			}
-        		}
+        		}*/
         		xmlhttp.send();
         		
             }
