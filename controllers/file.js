@@ -237,7 +237,16 @@ app.controller('FileCtrl',
         		var xmlhttp = new XMLHttpRequest();
         		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
         		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
-        		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');                
+        		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
+                
+                xmlhttp.responseType = 'arraybuffer';
+
+                /*
+                xmlhttp.onload = function() {
+                  processConcatenatedFile( xmlhttp.response );
+                }
+                */
+                
         		xmlhttp.addEventListener("progress", function(e) {
                             if (e.lengthComputable) {
                                 var percentage = Math.round((e.loaded / e.total) * 100);
