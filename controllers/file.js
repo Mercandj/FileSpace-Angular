@@ -230,30 +230,31 @@ app.controller('FileCtrl',
             }
             else if(file.type === 'mp3') {
             	openDialog(file.name, "", 
-			'<audio id="media">'+
-			'</audio>');
-		var mediaElem = document.getElementById("media");
-		
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", URL_SERVER+'file/'+file.id);
-		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
-		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
-		xmlhttp.addEventListener("progress", function(e) {
-                    if (e.lengthComputable) {
-                        var percentage = Math.round((e.loaded / e.total) * 100);
-                        console.log("download progress : "+percentage+" %");
-                    }
-                }, false);
-		xmlhttp.onreadystatechange = function()
-		{
-			//DONE readystate
-			if(xmlhttp.readystate = 4)
-			{
-				mediaElem.src = "data:audio/mpeg;base64," + xmlhttp.responseText;   
-			}
-		}
-		xmlhttp.send();
-		
+    			'<audio id="media">'+
+    			'</audio>');
+        		var mediaElem = document.getElementById("media");
+        		
+        		var xmlhttp = new XMLHttpRequest();
+        		xmlhttp.open("GET", URL_SERVER+'file/'+file.id);
+        		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
+        		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
+                xmlhttp.responseType = 'arraybuffer';
+        		xmlhttp.addEventListener("progress", function(e) {
+                            if (e.lengthComputable) {
+                                var percentage = Math.round((e.loaded / e.total) * 100);
+                                console.log("download progress : "+percentage+" %");
+                            }
+                        }, false);
+        		xmlhttp.onreadystatechange = function()
+        		{
+        			//DONE readystate
+        			if(xmlhttp.readystate = 4)
+        			{
+        				mediaElem.src = "data:audio/mpeg;base64," + window.btoa(xmlhttp.responseText);   
+        			}
+        		}
+        		xmlhttp.send();
+        		
             }
             else
                 openDialog(file.url, "Can't edit this type of file.", 
@@ -261,7 +262,7 @@ app.controller('FileCtrl',
                     '  <div class="center" fit>CANCEL</div>'+
                     '  <paper-ripple fit></paper-ripple>'+
                     '</div>');
-            
+                    
         };
 
 
