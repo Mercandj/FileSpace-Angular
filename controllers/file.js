@@ -228,6 +228,23 @@ app.controller('FileCtrl',
                     );
                 });
             }
+            else if(file.type === 'mp3') {
+            	$http({
+                    url: URL_SERVER+'file/'+file.id,
+                    method: 'GET',
+                    headers : {
+                        'Authorization':'Basic '+ myCache.get('myData'),
+                        'Content-Type':'application/json',
+                    }
+                })
+                .success(function(data,status) {
+			openDialog(file.name, "", 
+			'<audio id="media">'+
+			    '<source src="data:audio/mpeg;base64,'+data+'" />'+
+			    'Fallback statement...'+
+			'</audio>');
+                });
+            }
             else
                 openDialog(file.url, "Can't edit this type of file.", 
                     '<div class="button right" onclick="LinkButtonFAB_Click(this)">'+
