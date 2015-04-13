@@ -251,7 +251,6 @@ app.controller('FileCtrl',
                 sourceNode = context.createBufferSource();
                 // and connect to destination
                 sourceNode.connect(context.destination);
-
             	
         		var xmlhttp = new XMLHttpRequest();
         		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
@@ -260,27 +259,20 @@ app.controller('FileCtrl',
                 xmlhttp.responseType = 'arraybuffer';
 
                 xmlhttp.onreadystatechange = function() {
-                    if (
-                        (xmlhttp.readyState === 4) && 
+                    if ((xmlhttp.readyState === 4) && 
                         (xmlhttp.status === 200) && 
                         (xmlhttp.status !== 404)
                         ) {
                         context.decodeAudioData(xmlhttp.response, function(buffer) {
                             sourceNode.buffer = buffer;
-                            if(!start) {
-                                sourceNode.start(0);
-                                start = true;
-                            }
-                            
+                            sourceNode.start(0);
                         });
                     }
                 };
                 
         		xmlhttp.addEventListener("progress", function(e) {
                             if (e.lengthComputable) {
-                                var percentage = Math.round((e.loaded / e.total) * 100);
-                                console.log("download progress : "+percentage+" %");
-                                media_status.innerHTML = "download progress : "+percentage+" %";
+                                media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
                             }
                         }, false);
                 
@@ -295,7 +287,6 @@ app.controller('FileCtrl',
                     '</div>');
                     
         };
-
 
         $scope.save = function() {
             alert("SAVE ");
