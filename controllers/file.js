@@ -230,6 +230,11 @@ app.controller('FileCtrl',
             }
             else if(file.type === 'mp3') {
 
+                openDialog(file.name, "", 
+                '<audio id="media">'+
+                '</audio>');
+                var audio = document.getElementById("media");
+
                 if (! window.AudioContext) {
                     if (! window.webkitAudioContext) {
                         alert('no audiocontext found');
@@ -237,6 +242,7 @@ app.controller('FileCtrl',
                     window.AudioContext = window.webkitAudioContext;
                 }
                 var context = new AudioContext();
+                var analyser = context.createAnalyser();
                 var audioBuffer;
                 var sourceNode;
 
@@ -245,43 +251,19 @@ app.controller('FileCtrl',
                 // and connect to destination
                 sourceNode.connect(context.destination);
 
-
-            	openDialog(file.name, "", 
-    			'<audio id="media">'+
-    			'</audio>');
-        		var mediaElem = document.getElementById("media");
-        		
+            	
         		var xmlhttp = new XMLHttpRequest();
         		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
         		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
         		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
-                xmlhttp.responseType = "ms-stream";
-                
                 xmlhttp.responseType = 'arraybuffer';
 
-                var start = false;
-
-                /*
-                // When loaded decode the data
-                xmlhttp.onload = function() {
-         
-                    // decode the data
-                    context.decodeAudioData(xmlhttp.response, function(buffer) {
-                        // when the audio is decoded play the sound
-                        sourceNode.buffer = buffer;
-                        sourceNode.start(0);
-                    }, function(e) {
-                        console.log(e);
-                    });
-                }
-                */
-
                 xmlhttp.onreadystatechange = function() {
-                    /*if (
+                    if (
                         (xmlhttp.readyState === 4) && 
                         (xmlhttp.status === 200) && 
                         (xmlhttp.status !== 404)
-                        ) {*/
+                        ) {
                         context.decodeAudioData(xmlhttp.response, function(buffer) {
                             sourceNode.buffer = buffer;
                             if(!start) {
@@ -290,25 +272,16 @@ app.controller('FileCtrl',
                             }
                             
                         });
-                    //} 
+                    }
                 };
                 
         		xmlhttp.addEventListener("progress", function(e) {
                             if (e.lengthComputable) {
                                 var percentage = Math.round((e.loaded / e.total) * 100);
                                 console.log("download progress : "+percentage+" %");
-
-
                             }
                         }, false);
-        		/*xmlhttp.onreadystatechange = function()
-        		{
-        			//DONE readystate
-        			if(xmlhttp.readyState==4 && xmlhttp.status==200)
-        			{
-        				mediaElem.src = "data:audio/mpeg;base64," + window.btoa(xmlhttp.responseText);   
-        			}
-        		}*/
+                
         		xmlhttp.send();
         		
             }
