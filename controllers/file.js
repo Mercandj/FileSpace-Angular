@@ -235,7 +235,7 @@ app.controller('FileCtrl',
 		var mediaElem = document.getElementById("media");
 		
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", "mediaFile.base64");
+		xmlhttp.open("GET", URL_SERVER+'file/'+file.id);
 		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
 		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
 		xmlhttp.addEventListener("progress", function(e) {
