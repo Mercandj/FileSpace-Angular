@@ -255,6 +255,7 @@ app.controller('FileCtrl',
         		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
         		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
         		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
+                xmlhttp.responseType = "ms-stream";
                 
                 xmlhttp.responseType = 'arraybuffer';
 
@@ -276,11 +277,11 @@ app.controller('FileCtrl',
                 */
 
                 xmlhttp.onreadystatechange = function() {
-                    /*if (
+                    if (
                         (xmlhttp.readyState === 4) && 
                         (xmlhttp.status === 200) && 
                         (xmlhttp.status !== 404)
-                        ) {*/
+                        ) {
                         context.decodeAudioData(xmlhttp.response, function(buffer) {
                             sourceNode.buffer = buffer;
                             if(!start) {
@@ -289,7 +290,7 @@ app.controller('FileCtrl',
                             }
                             
                         });
-                    //} 
+                    } 
                 };
                 
         		xmlhttp.addEventListener("progress", function(e) {
