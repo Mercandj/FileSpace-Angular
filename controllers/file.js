@@ -69,7 +69,51 @@ app.controller('FileCtrl',
             $location.path( "/" );
         });
 
-
+        $scope.refresh = function(id_file_parent) {
+            id_file_parent = typeof id_file_parent !== 'undefined' ? id_file_parent : -1;
+            var deferred = $q.defer();
+            $http({
+                url: URL_SERVER+'file?id_file_parent='+id_file_parent,
+                method: 'GET',
+                headers : {
+                    'Authorization':'Basic '+ myCache.get('myData'),
+                    'Content-Type':'application/json',
+                }
+            })
+            .success(function(data,status) {
+                if(data.succeed === true) {
+                    console.log("Result /file : " + JSON.stringify(data.result));
+                    data.result.forEach(function(file) {
+                        file.size = bytesToSize(file.size);
+                        if(!file.directory)
+                            file.name+="."+file.type;
+                        if(file.type=="mp3")
+                            file.icon='file_audio.png';
+                        else if(file.type=="pdf")
+                            file.icon='file_pdf.png';
+                        else if(file.type=="apk")
+                            file.icon='file_apk.png';
+                        else if(file.type=="jarvis")
+                            file.icon='file_jarvis.png';
+                        else if(file.directory)
+                            file.icon='directory.png';
+                        else
+                            file.icon='file_default.png';
+                    });                
+                    $scope.filesOnline = data.result;
+                    deferred.resolve(data.result);
+                }
+            })
+            .error(function(data,status) {
+                if(status == 401)
+                    deferred.reject('401 unauthorized')
+                else if(status == 404)
+                    deferred.reject('404 not found');
+                else
+                    deferred.reject('Cannot get files');
+                $location.path( "/" );
+            });
+        }
 
         $scope.filesChanged = function(elm) {
             $scope.files = elm.files;
@@ -212,7 +256,10 @@ app.controller('FileCtrl',
 
         $scope.edit = function(file) {
 
-            if (file.type === 'txt') {
+            if (file.directory) {
+                $scope.refresh(file.id);
+            }
+            else if (file.type === 'txt') {
                 $http({
                     url: URL_SERVER+'file/'+file.id,
                     method: 'GET',
