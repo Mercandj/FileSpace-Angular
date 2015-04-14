@@ -9,7 +9,7 @@
 
   <article ng-repeat="file in filesOnline">
     <a title="{{file.date_creation}} ">
-      <img class="width10" height="42" width="42" src="assets/images/file_default.png"/>
+      <img height="42" width="42" src="assets/images/{{file.icon}}"/>
       <p class="width80" ng-click="edit(file)">{{file.name}}</p>
       <div class="width10" ng-click="download(file)">
 

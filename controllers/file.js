@@ -17,6 +17,12 @@ app.controller('FileCtrl',
                     file.size = bytesToSize(file.size);
                     if(!file.directory)
                         file.name+="."+file.type;
+                    if(file.type=="mp3")
+                        file.icon='file_audio.png';
+                    else if(file.directory)
+                        file.icon='directory.png';
+                    else
+                        file.icon='file_default.png';
                 });                
                 $scope.filesOnline = data.result;
             	deferred.resolve(data.result);
