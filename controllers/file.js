@@ -216,11 +216,9 @@ app.controller('FileCtrl',
                         '</textarea>',
 
                         'SAVE',
-                        'save()',
                         null,
 
                         'CANCEL',
-                        'LinkButtonFAB_Click(this)',
                         null);
 
                 });
@@ -228,16 +226,14 @@ app.controller('FileCtrl',
             else if(file.type === 'mp3') {
 
                 openDialog(file.name, "",
-                    
+
                     '<audio id="media"></audio>'+
                     '<a id="media_status"></a>',
 
                     null,
                     null,
-                    null,
 
                     'CANCEL',
-                    'LinkButtonFAB_Click(this)',
                     null);
 
                 var audio = document.getElementById("media");
@@ -293,10 +289,8 @@ app.controller('FileCtrl',
 
                     null,
                     null,
-                    null,
 
                     'CANCEL',
-                    'LinkButtonFAB_Click(this)',
                     null);
                     
         };
