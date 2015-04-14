@@ -247,8 +247,7 @@ app.controller('FileCtrl',
                     // Fallback to window.open method
                     console.log("No methods worked for saving the arraybuffer, using last resort window.open");
                     window.open(httpPath, '_blank', '');
-                }
-                
+                }                
 
             });
 
