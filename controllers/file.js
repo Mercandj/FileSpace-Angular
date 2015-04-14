@@ -71,6 +71,18 @@ app.controller('FileCtrl',
 
         $scope.refresh = function(id_file_parent) {
             id_file_parent = typeof id_file_parent !== 'undefined' ? id_file_parent : -1;
+
+            var fab2 = document.getElementById("fab2");
+            if(id_file_parent != -1) {
+                fab2.style.display = "";
+                fab2.addEventListener("click", function(e) {
+                    $scope.refresh(-1);
+                });
+            }
+            else {
+                fab2.style.display = "none";
+            }
+
             var deferred = $q.defer();
             $http({
                 url: URL_SERVER+'file?id_file_parent='+id_file_parent,
