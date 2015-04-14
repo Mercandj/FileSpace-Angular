@@ -210,7 +210,7 @@ app.controller('FileCtrl',
                     }
                 })
                 .success(function(data,status) {
-                    openDialogV2(file.name, "",
+                    openDialog(file.name, "",
                         '<textarea rows="5" name="text" placeholder="YOUR TXT" class="error">'+
                         data +
                         '</textarea>',
@@ -223,35 +223,23 @@ app.controller('FileCtrl',
                         'LinkButtonFAB_Click(this)',
                         null);
 
-
-                    /*
-                    openDialog(file.name, "", 
-                        '<textarea rows="5" name="text" placeholder="YOUR TXT" class="error">'+
-                        data +
-                        '</textarea>'+
-
-                        '<div ng-controller="FileCtrl" ng-click="save()" class="button label-blue left">'+
-                        '  <div class="center" fit>SAVE</div>'+
-                        '  <paper-ripple fit></paper-ripple>'+
-                        '</div>'+
-                        
-                        '<div class="button right" onclick="LinkButtonFAB_Click(this)">'+
-                        '  <div class="center" fit>CANCEL</div>'+
-                        '  <paper-ripple fit></paper-ripple>'+
-                        '</div>'
-                    );
-                    */
                 });
             }
             else if(file.type === 'mp3') {
 
-                openDialog(file.name, "", 
-                '<audio id="media"></audio>'+
-                '<a id="media_status"></a>'+
-                '<div class="button right" onclick="LinkButtonFAB_Click(this)">'+
-                        '  <div class="center" fit>CANCEL</div>'+
-                        '  <paper-ripple fit></paper-ripple>'+
-                '</div>');
+                openDialog(file.name, "",
+                    
+                    '<audio id="media"></audio>'+
+                    '<a id="media_status"></a>',
+
+                    null,
+                    null,
+                    null,
+
+                    'CANCEL',
+                    'LinkButtonFAB_Click(this)',
+                    null);
+
                 var audio = document.getElementById("media");
                 var media_status = document.getElementById("media_status");
 
@@ -300,10 +288,16 @@ app.controller('FileCtrl',
             }
             else
                 openDialog(file.url, "Can't edit this type of file.", 
-                    '<div class="button right" onclick="LinkButtonFAB_Click(this)">'+
-                    '  <div class="center" fit>CANCEL</div>'+
-                    '  <paper-ripple fit></paper-ripple>'+
-                    '</div>');
+                    
+                    null,
+
+                    null,
+                    null,
+                    null,
+
+                    'CANCEL',
+                    'LinkButtonFAB_Click(this)',
+                    null);
                     
         };
 
