@@ -232,7 +232,11 @@ app.controller('FileCtrl',
 
                 openDialog(file.name, "", 
                 '<audio id="media"></audio>'+
-                '<a id="media_status"></a>');
+                '<a id="media_status"></a>'+
+                '<div class="button right" onclick="LinkButtonFAB_Click(this)">'+
+                        '  <div class="center" fit>CANCEL</div>'+
+                        '  <paper-ripple fit></paper-ripple>'+
+                '</div>');
                 var audio = document.getElementById("media");
                 var media_status = document.getElementById("media_status");
 
