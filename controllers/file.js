@@ -210,6 +210,21 @@ app.controller('FileCtrl',
                     }
                 })
                 .success(function(data,status) {
+                    openDialogV2(file.name, "",
+                        '<textarea rows="5" name="text" placeholder="YOUR TXT" class="error">'+
+                        data +
+                        '</textarea>',
+
+                        'SAVE',
+                        'save()',
+                        null,
+
+                        'CANCEL',
+                        'LinkButtonFAB_Click(this)',
+                        null);
+
+
+                    /*
                     openDialog(file.name, "", 
                         '<textarea rows="5" name="text" placeholder="YOUR TXT" class="error">'+
                         data +
@@ -224,8 +239,8 @@ app.controller('FileCtrl',
                         '  <div class="center" fit>CANCEL</div>'+
                         '  <paper-ripple fit></paper-ripple>'+
                         '</div>'
-
                     );
+                    */
                 });
             }
             else if(file.type === 'mp3') {
