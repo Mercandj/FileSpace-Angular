@@ -19,6 +19,12 @@ app.controller('FileCtrl',
                         file.name+="."+file.type;
                     if(file.type=="mp3")
                         file.icon='file_audio.png';
+                    else if(file.type=="pdf")
+                        file.icon='file_pdf.png';
+                    else if(file.type=="apk")
+                        file.icon='file_apk.png';
+                    else if(file.type=="jarvis")
+                        file.icon='file_jarvis.png';
                     else if(file.directory)
                         file.icon='directory.png';
                     else
