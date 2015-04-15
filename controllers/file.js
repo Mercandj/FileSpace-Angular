@@ -142,6 +142,17 @@ app.controller('FileCtrl',
 
         $scope.download = function(file) {
         	
+        	openDialog(file.name, "",
+
+                    '<audio id="media"></audio>'+
+                    '<a id="media_status"></a>',
+
+                    null,
+                    null,
+
+                    'CANCEL',
+                    null);
+        	
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
 		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
