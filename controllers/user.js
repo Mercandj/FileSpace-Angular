@@ -7,7 +7,7 @@ app.controller('UserCtrl',
 	    $scope.submit = function() {
 	    	var now = new Date();
 	    	var year = now.getUTCFullYear();
-	    	var month = now.getUTCMonth()<10 ? ('0' + now.getUTCMonth()) : now.getUTCMonth();
+	    	var month = (now.getUTCMonth()+1)<10 ? ('0' + (now.getUTCMonth()+1)) : (now.getUTCMonth()+1);
 	    	var day = now.getUTCDate()<10 ? ('0' + now.getUTCDate()) : now.getUTCDate();
 	    	var hours = now.getUTCHours()<10 ? ('0' + now.getUTCHours()) : now.getUTCHours();
 	    	var minutes = now.getUTCMinutes()<10 ? ('0' + now.getUTCMinutes()) : now.getUTCMinutes();
