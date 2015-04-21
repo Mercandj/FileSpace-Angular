@@ -5,6 +5,12 @@ app.controller('UserCtrl',
 	    var deferred = $q.defer();
 
 	    $scope.submit = function() {
+
+	    	if($scope.user.username.length > 40) {
+	    		alert("Wrong username.");
+	    		return;
+	    	}
+
 	    	var now = new Date();
 	    	var year = now.getUTCFullYear();
 	    	var month = (now.getUTCMonth()+1)<10 ? ('0' + (now.getUTCMonth()+1)) : (now.getUTCMonth()+1);
