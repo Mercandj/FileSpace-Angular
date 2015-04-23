@@ -1,6 +1,2 @@
-<IfModule mod_filter.c>
-<IfModule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
 DeflateCompressionLevel 9
-</IfModule>
-</IfModule>
