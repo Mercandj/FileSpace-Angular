@@ -1,2 +1,1 @@
-AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
-DeflateCompressionLevel 9
+AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript
