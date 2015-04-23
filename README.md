@@ -25,8 +25,6 @@ Remote and secure file manager.
 
 * [Jarvis Rest API PHP](https://github.com/Mercandj/Jarvis-API)
 
-* Apache module : deflate_module, headers_module, filter_module
-
 
 ## DEVELOPER
 
