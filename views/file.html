@@ -22,7 +22,11 @@
 </section>
 
 <section id="NavigationMenu" class="navigation-menu">
-  <a href="">{{information}}</a>
+  <ul>
+    <li><a ng-click="switchTab(1)">Files</a></li>
+    <li><a ng-click="switchTab(2)">Talks</a></li>
+    <li><a href="">{{information}}</a></li>
+  </ul>
 </section>
 
 <div id="fab1" class="fab blue" onclick="LinkButtonFAB_Click(this)">
