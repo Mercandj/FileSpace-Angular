@@ -64,7 +64,7 @@ app.controller('FileCtrl',
                         var jsonDate = JSON.parse(file.content),
                             timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
                     	    interval = setInterval(function(timerDate, id) {
-		                 (document.getElementsByClassName('file-id-'+id+' file-type-jarvis')).innerHTML = 
+		                 (document.getElementsByClassName('file-id-'+id+' file-type-jarvis')[0]).innerHTML = 
                     	              (DateDiff.inHours(new Date(), timerDate)%24) + " " +
                     	              (DateDiff.inMinutes(new Date(), timerDate)%60) + " " +
 		        	      (DateDiff.inSeconds(new Date(), timerDate)%60);
