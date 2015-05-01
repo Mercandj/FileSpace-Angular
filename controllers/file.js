@@ -61,15 +61,14 @@ app.controller('FileCtrl',
 		
 		data.result.forEach(function(file) {
                     if(file.type=="jarvis") {
-                        var element_timer = document.getElementsByClassName('file-id-'+file.id+' file-type-jarvis'),
-                            jsonDate = JSON.parse(file.content),
+                        var jsonDate = JSON.parse(file.content),
                             timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
-                    	    interval = setInterval(function(timerDate) {
-		            element_timer.innerHTML = 
-		        		(DateDiff.inHours(new Date(), timerDate)%24) + " " +
-		        		(DateDiff.inMinutes(new Date(), timerDate)%60)  + " " +
-		        		(DateDiff.inSeconds(new Date(), timerDate)%60)  ;
-		        }, 1000, timerDate);
+                    	    interval = setInterval(function(timerDate, id) {
+		                 (document.getElementsByClassName('file-id-'+id+' file-type-jarvis')).innerHTML = 
+                    	              (DateDiff.inHours(new Date(), timerDate)%24) + " " +
+                    	              (DateDiff.inMinutes(new Date(), timerDate)%60) + " " +
+		        	      (DateDiff.inSeconds(new Date(), timerDate)%60);
+		            }, 1000, timerDate, file.id);
                     }
                 });
             }
