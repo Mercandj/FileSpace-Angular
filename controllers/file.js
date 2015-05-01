@@ -61,7 +61,7 @@ app.controller('FileCtrl',
 		
 		data.result.forEach(function(file) {
                     if(file.type=="jarvis") {
-                        var element_timer = document.querySelector('.file-type-'+file.id+' .file-type-jarvis'),
+                        var element_timer = document.getElementsByClassName('file-type-'+file.id+' file-type-jarvis'),
                             jsonDate = JSON.parse(file.content),
                             timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
                     	    interval = setInterval(function(timerDate) {
