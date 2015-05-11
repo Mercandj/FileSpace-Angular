@@ -68,15 +68,16 @@ app.controller('FileCtrl',
                         var jsonDate = JSON.parse(file.content),
                             timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
                     	    interval = setInterval(function(timerDate, id) {
-                    	    	var ms = DateDiff.inSeconds(new Date(), timerDate)%1000,
+                    	    	var ms = DateDiff.inMSeconds(new Date(), timerDate),
+                    	    	ms_ = ms%1000,
                     	    	ms_txt = "";
-                    	    	if(ms<10) ms_txt+="0";
-            	    		if(ms<100) ms_txt+="0";
+                    	    	if(ms_<10) ms_txt+="0";
+            	    		if(ms_<100) ms_txt+="0";
 		                 (document.getElementsByClassName('file-id-'+id+' file-type-jarvis')[0]).innerHTML = 
                     	              (parseInt(ms/3600000)%24) + " " +
                     	              (parseInt(ms/60000)%60) + " " +
 		        	      (parseInt(ms/1000)%60) + " : " +
-		        	      ms_txt+ms;
+		        	      ms_txt+ms_;
 		            }, 50, timerDate, file.id);
                     }
                 });
