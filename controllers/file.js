@@ -34,7 +34,11 @@ app.controller('FileCtrl',
             	deferred.resolve(data.result);
             	
             	var DateDiff = {
-                        inSeconds: function(d1, d2) {
+                    inMSeconds: function(d1, d2) {
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return t2-t1;
+                    },
+                    inSeconds: function(d1, d2) {
                         var t2 = d2.getTime(), t1 = d1.getTime();
                         return parseInt((t2-t1)/(1000));
                     },
@@ -64,11 +68,18 @@ app.controller('FileCtrl',
                         var jsonDate = JSON.parse(file.content),
                             timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
                     	    interval = setInterval(function(timerDate, id) {
+                    	    	var ms = DateDiff.inSeconds(new Date(), timerDate)%1000,
+                    	    	s = parseInt(ms/1000)%60,
+                    	    	ms_txt = "";
+                    	    	if(ms<10) ms_txt+="0";
+            	    		if(ms<100) ms_txt+="0";
+                    	    	ms_txt+=""+ms;
 		                 (document.getElementsByClassName('file-id-'+id+' file-type-jarvis')[0]).innerHTML = 
                     	              (DateDiff.inHours(new Date(), timerDate)%24) + " " +
                     	              (DateDiff.inMinutes(new Date(), timerDate)%60) + " " +
-		        	      (DateDiff.inSeconds(new Date(), timerDate)%60);
-		            }, 1000, timerDate, file.id);
+		        	      s + " : " +
+		        	      ms_txt;
+		            }, 50, timerDate, file.id);
                     }
                 });
             }
