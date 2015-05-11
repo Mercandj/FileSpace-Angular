@@ -69,16 +69,14 @@ app.controller('FileCtrl',
                             timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
                     	    interval = setInterval(function(timerDate, id) {
                     	    	var ms = DateDiff.inSeconds(new Date(), timerDate)%1000,
-                    	    	s = parseInt(ms/1000)%60,
                     	    	ms_txt = "";
                     	    	if(ms<10) ms_txt+="0";
             	    		if(ms<100) ms_txt+="0";
-                    	    	ms_txt+=""+ms;
 		                 (document.getElementsByClassName('file-id-'+id+' file-type-jarvis')[0]).innerHTML = 
-                    	              (DateDiff.inHours(new Date(), timerDate)%24) + " " +
-                    	              (DateDiff.inMinutes(new Date(), timerDate)%60) + " " +
-		        	      s + " : " +
-		        	      ms_txt;
+                    	              (parseInt(ms/3600000)%24) + " " +
+                    	              (parseInt(ms/60000)%60) + " " +
+		        	      (parseInt(ms/1000)%60) + " : " +
+		        	      ms_txt+ms;
 		            }, 50, timerDate, file.id);
                     }
                 });
