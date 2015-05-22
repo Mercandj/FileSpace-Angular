@@ -72,10 +72,15 @@ app.controller('FileCtrl',
                     	    	ms_ = parseInt((ms%1000)/10),
                     	    	ms_txt = "";
                     	    	if(ms_<10) ms_txt+="0";
+                    	    	
+                    	    	var h = (parseInt(ms/3600000)%24),
+                    	    	m = (parseInt(ms/60000)%60),
+                    	    	s = (parseInt(ms/1000)%60);
+                    	    	
 		                (document.getElementsByClassName('file-id-'+id+' file-type-jarvis')[0]).innerHTML = 
-                    	              (parseInt(ms/3600000)%24) + " " +
-                    	              (parseInt(ms/60000)%60) + " " +
-		        	      (parseInt(ms/1000)%60) + " : " +
+                    	              ((h>0)?(h+" "):"")+
+                    	              ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
+		        	      ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
 		        	      ms_txt+ms_;
 		            }, 10, timerDate, file.id);
                     }
