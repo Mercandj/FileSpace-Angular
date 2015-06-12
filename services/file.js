@@ -78,8 +78,15 @@ app.service('fileService', ['$http', 'myCache', '$q',
                 success: function(response, textStatus, jqXHR) {
                     console.log("success : " + textStatus + " : " + JSON.stringify(response));
                     deferred.resolve(response);
-                    p_endListener();
-                    alert('Upload succeed!');
+                    
+                    //lert('Upload succeed!');
+
+                    if (window.confirm('Upload succeed!'))
+                    {
+                        p_endListener();
+                    }
+
+                    
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log("error : " + textStatus);
