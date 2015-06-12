@@ -78,6 +78,7 @@ app.service('fileService', ['$http', 'myCache', '$q',
                 success: function(response, textStatus, jqXHR) {
                     console.log("success : " + textStatus + " : " + JSON.stringify(response));
                     deferred.resolve(response);
+                    $scope.refresh(-1);
                     alert('Upload succeed!');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
