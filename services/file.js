@@ -45,7 +45,7 @@ app.factory('FileFactory',
 );
 
 app.service('fileService', ['$http', 'myCache', '$q',
-    function ($http, myCache, $q) {
+    function ($scope, $http, myCache, $q) {
         this.uploadFileToUrl = function(p_url, p_auth, p_filesArray) {
 
             var deferred = $q.defer();
