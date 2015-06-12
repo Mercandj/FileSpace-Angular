@@ -44,9 +44,9 @@ app.factory('FileFactory',
     }
 );
 
-app.service('fileService', ['$scope', '$http', 'myCache', '$q',
-    function ($scope, $http, myCache, $q) {
-        this.uploadFileToUrl = function(p_url, p_auth, p_filesArray) {
+app.service('fileService', ['$http', 'myCache', '$q',
+    function ($http, myCache, $q) {
+        this.uploadFileToUrl = function(p_url, p_auth, p_filesArray, p_endListener) {
 
             var deferred = $q.defer();
             var getProgressListener = function(deferred) {
@@ -78,7 +78,7 @@ app.service('fileService', ['$scope', '$http', 'myCache', '$q',
                 success: function(response, textStatus, jqXHR) {
                     console.log("success : " + textStatus + " : " + JSON.stringify(response));
                     deferred.resolve(response);
-                    $scope.refresh(-1);
+                    p_endListener();
                     alert('Upload succeed!');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {

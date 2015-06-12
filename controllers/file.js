@@ -189,7 +189,10 @@ app.controller('FileCtrl',
             fileService.uploadFileToUrl(
                 URL_SERVER+'file',
                 myCache.get('myData'),
-                $scope.files
+                $scope.files,
+                function() {
+                    $scope.refresh(-1);
+                }
             );
         };
 
