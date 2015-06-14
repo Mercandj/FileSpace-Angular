@@ -25,6 +25,8 @@ app.controller('FileCtrl',
                         file.icon='file_apk.png';
                     else if(file.type=="jarvis")
                         file.icon='file_jarvis.png';
+                    else if(file.type=="zip" || file.type=="rar")
+                        file.icon='file_archive.png';
                     else if(file.directory)
                         file.icon='directory.png';
                     else
