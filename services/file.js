@@ -57,7 +57,7 @@ app.service('fileService', ['$http', 'myCache', '$q',
                         var percentage = Math.round((e.loaded / e.total) * 100);
                         console.log("upload progress : "+percentage+" %");
                         var description2 = document.getElementById("Dialog_Description2");
-                        description2.innerHTML = "Downloading : "+percentage+" %";
+                        description2.innerHTML = "Uploading : "+percentage+" %";
                     }
                 };
             };
