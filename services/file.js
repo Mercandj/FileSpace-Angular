@@ -48,12 +48,15 @@ app.service('fileService', ['$http', 'myCache', '$q',
     function ($http, myCache, $q) {
         this.uploadFileToUrl = function(p_url, p_auth, p_filesArray, p_endListener) {
 
+            var description2 = document.getElementById("Dialog_Description2");
+
             var deferred = $q.defer();
             var getProgressListener = function(deferred) {
                 return function(e) {
                     if (e.lengthComputable) {
                         var percentage = Math.round((e.loaded / e.total) * 100);
                         console.log("upload progress : "+percentage+" %");
+                        description2.innerHTML = "Downloading : "+percentage+" %";
                     }
                 };
             };
