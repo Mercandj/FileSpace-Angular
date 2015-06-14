@@ -23,10 +23,10 @@ app.controller('FileCtrl',
                         file.icon='file_pdf.png';
                     else if(file.type=="apk")
                         file.icon='file_apk.png';
+                    else if(file.type=="zip" || file.type=="gzip" || file.type=="rar" || file.type=="tar" || file.type=="tar.gz" || file.type=="gz")
+                        file.icon='file_archive.png';
                     else if(file.type=="jarvis")
                         file.icon='file_jarvis.png';
-                    else if(file.type=="zip" || file.type=="rar")
-                        file.icon='file_archive.png';
                     else if(file.directory)
                         file.icon='directory.png';
                     else
@@ -160,6 +160,8 @@ app.controller('FileCtrl',
                             file.icon='file_pdf.png';
                         else if(file.type=="apk")
                             file.icon='file_apk.png';
+                        else if(file.type=="zip" || file.type=="gzip" || file.type=="rar" || file.type=="tar" || file.type=="tar.gz" || file.type=="gz")
+                            file.icon='file_archive.png';
                         else if(file.type=="jarvis")
                             file.icon='file_jarvis.png';
                         else if(file.directory)
