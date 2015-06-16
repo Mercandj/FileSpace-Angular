@@ -411,13 +411,30 @@ app.controller('FileCtrl',
                         (xmlhttp.status === 200) && 
                         (xmlhttp.status !== 404)
                         ) {
-                        var bb              = new Blob([xmlhttp.response]);
-			var blob            = bb.getBlob ('image/png');
-			var reader          = new FileReader ();
-			reader.onload       = function (zFR_Event) {
-				$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
-			};
-			reader.readAsDataURL (blob);
+                        
+                        var mimeString = 'image/png';
+                	try {
+				var blob = new Blob([xmlhttp.response], {type: mimeString});
+				var reader          = new FileReader ();
+				reader.onload       = function (zFR_Event) {
+					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+				};
+				reader.readAsDataURL (blob);
+			} catch (e) {
+				// The BlobBuilder API has been deprecated in favour of Blob, but older
+				// browsers don't know about the Blob constructor
+				// IE10 also supports BlobBuilder, but since the `Blob` constructor
+				//  also works, there's no need to add `MSBlobBuilder`.
+				var BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder;
+				var bb = new BlobBuilder();
+				bb.append(xmlhttp.response);
+				var blob = bb.getBlob(mimeString);
+				var reader          = new FileReader ();
+				reader.onload       = function (zFR_Event) {
+					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+				};
+				reader.readAsDataURL (blob);
+			}
                     }
                 };
         
