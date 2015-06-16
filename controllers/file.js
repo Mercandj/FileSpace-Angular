@@ -405,11 +405,14 @@ app.controller('FileCtrl',
                         media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
                     }
                 }, false);
-        
-		xmlhttp.send();
-		
-		if (xmlhttp.status === 200) {
-			var bb              = new BlobBuilder ();
+                
+                xmlhttp.onreadystatechange = function() {
+                    if ((xmlhttp.readyState === 4) && 
+                        (xmlhttp.status === 200) && 
+                        (xmlhttp.status !== 404)
+                        ) {
+                        console.log("Image loaded");
+                        var bb              = new BlobBuilder ();
 			bb.append (xmlhttp.response); // Note: not request.responseText
 			
 			var blob            = bb.getBlob ('image/png');
@@ -418,8 +421,10 @@ app.controller('FileCtrl',
 				$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
 			};
 			reader.readAsDataURL (blob);
-		}
-        		
+                    }
+                };
+        
+		xmlhttp.send();
             }
             else if(file.type === 'mp3') {
 
