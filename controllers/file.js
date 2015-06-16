@@ -372,6 +372,55 @@ app.controller('FileCtrl',
 
                 });
             }
+            else if(file.type === 'png' || file.type === 'jpg') {
+
+                openDialog(file.name, "",
+
+                    '<div id="popup-image"></div>'+
+                    '<a id="media_status"></a>',
+
+                    null,
+                    null,
+
+                    'CANCEL',
+                    null);
+
+                var media_status = document.getElementById("media_status");
+
+                if (! window.AudioContext) {
+                    if (! window.webkitAudioContext) {
+                        alert('no audiocontext found');
+                    }
+                    window.AudioContext = window.webkitAudioContext;
+                }
+                var context = new AudioContext();
+                var sourceNode;
+            	
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
+		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
+		
+		xmlhttp.addEventListener("progress", function(e) {
+                    if (e.lengthComputable) {
+                        media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
+                    }
+                }, false);
+        
+		xmlhttp.send();
+		
+		if (xmlhttp.status === 200) {
+			var bb              = new BlobBuilder ();
+			bb.append (xmlhttp.response); // Note: not request.responseText
+			
+			var blob            = bb.getBlob ('image/png');
+			var reader          = new FileReader ();
+			reader.onload       = function (zFR_Event) {
+				$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+			};
+			reader.readAsDataURL (blob);
+		}
+        		
+            }
             else if(file.type === 'mp3') {
 
                 openDialog(file.name, "",
@@ -404,10 +453,10 @@ app.controller('FileCtrl',
                 // and connect to destination
                 sourceNode.connect(context.destination);
             	
-        		var xmlhttp = new XMLHttpRequest();
-        		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
-        		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
-        		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
+		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
+		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
                 xmlhttp.responseType = 'arraybuffer';
 
                 xmlhttp.onreadystatechange = function() {
@@ -422,13 +471,13 @@ app.controller('FileCtrl',
                     }
                 };
                 
-        		xmlhttp.addEventListener("progress", function(e) {
-                            if (e.lengthComputable) {
-                                media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
-                            }
-                        }, false);
-                
-        		xmlhttp.send();
+		xmlhttp.addEventListener("progress", function(e) {
+                    if (e.lengthComputable) {
+                        media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
+                    }
+                }, false);
+        
+		xmlhttp.send();
         		
             }
             else
