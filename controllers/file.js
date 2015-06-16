@@ -411,10 +411,7 @@ app.controller('FileCtrl',
                         (xmlhttp.status === 200) && 
                         (xmlhttp.status !== 404)
                         ) {
-                        console.log("Image loaded");
-                        var bb              = new BlobBuilder ();
-			bb.append (xmlhttp.response); // Note: not request.responseText
-			
+                        var bb              = new Blob([xmlhttp.response]);
 			var blob            = bb.getBlob ('image/png');
 			var reader          = new FileReader ();
 			reader.onload       = function (zFR_Event) {
