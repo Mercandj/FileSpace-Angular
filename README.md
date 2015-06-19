@@ -1,15 +1,15 @@
-J.A.R.V.I.S - AngularJS
+FileSpace - AngularJS
 =====================
 
 **_Unfinished project, still in development_** [API Required](https://github.com/Mercandj/Jarvis-API)
 
 <p align="center">
-	<img src="https://raw.github.com/Mercandj/Jarvis-Angular/master/screenshot/A.png" width="500" />
+	<img src="https://raw.github.com/Mercandj/FileSpace-Angular/master/screenshot/A.png" width="500" />
 </p>
 
 ## PROJECT DESCRIPTION
 
-* Name : Jarvis (Just A Remote Very Intelligent System)
+* Name : FileSpace
 * Description : Remote file manager
 * Location : Paris
 * Starting Date : October 2014
@@ -23,7 +23,7 @@ Remote and secure file manager.
 
 ## REQUIRED
 
-* [Jarvis Rest API PHP](https://github.com/Mercandj/Jarvis-API)
+* [Jarvis Rest API PHP](https://github.com/Mercandj/FileSpace-API)
 
 
 ## DEVELOPER
