@@ -66,7 +66,8 @@ app.controller('FileCtrl',
                     	    	ms_txt = "";
                     	    	if(ms_<10) ms_txt+="0";
                     	    	
-                    	    	var h = (parseInt(ms/3600000)%24),
+                    	    	var d = (parseInt(ms/86400000)),
+                    	    	h = (parseInt(ms/3600000)%24),
                     	    	m = (parseInt(ms/60000)%60),
                     	    	s = (parseInt(ms/1000)%60);
                     	    	
@@ -74,10 +75,11 @@ app.controller('FileCtrl',
                     	    	var current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
 				for(var i = 0; i < current_class.length; i++) {
 				    (current_class[i]).innerHTML = 
-	                    	              ((h>0)?(h+" "):"")+
-	                    	              ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
-			        	      ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
-			        	      ms_txt+ms_;
+			    		((d>0)?(d+"d : "):"")+
+					((h>0)?(h+" "):"")+
+					((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
+					((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
+					ms_txt+ms_;
 				}
 		            }, 10, timerDate, file.id);
                     }
@@ -204,7 +206,8 @@ app.controller('FileCtrl',
                     	    	ms_txt = "";
                     	    	if(ms_<10) ms_txt+="0";
                     	    	
-                    	    	var h = (parseInt(ms/3600000)%24),
+                    	    	var d = (parseInt(ms/86400000)),
+                    	    	h = (parseInt(ms/3600000)%24),
                     	    	m = (parseInt(ms/60000)%60),
                     	    	s = (parseInt(ms/1000)%60);
                     	    	
@@ -212,10 +215,11 @@ app.controller('FileCtrl',
                     	    	var current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
 				for(var i = 0; i < current_class.length; i++) {
 				    (current_class[i]).innerHTML = 
-	                    	              ((h>0)?(h+" "):"")+
-	                    	              ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
-			        	      ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
-			        	      ms_txt+ms_;
+			    		((d>0)?(d+"d : "):"")+
+					((h>0)?(h+" "):"")+
+					((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
+					((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
+					ms_txt+ms_;
 				}
 		            }, 10, timerDate, file.id);
                     }
