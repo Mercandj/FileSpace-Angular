@@ -464,7 +464,7 @@ body{
 		:-ms-input-placeholder { font-size:0.9rem; }
 		input:-moz-placeholder { font-size:0.9rem; }
 
-		button{
+		button {
 			cursor:pointer;
 			display:block;
 			width:250px;
@@ -476,19 +476,32 @@ body{
 			text-transform: uppercase;
 		}
 
-		div{
+		div {
 			background:white;
-			padding: 18px;
-			p{
-				text-align: center;
-				font-size:0.9rem;
-				color:@grey;
-				a{
+			white-space: nowrap;
+
+			p {
+				display: inline-flex;
+				width: 50%;
+				font-size: 0.9rem;
+				color: @grey;
+				a {
+					width: 100%;
 					text-decoration: none;
 					color:@blue;
+					padding: 18px 24px 18px 24px;
 					&:hover{
 						text-decoration: underline;
 					}
+				}
+			}
+			.left {
+				text-align: left;
+			}
+			.right {
+				text-align: right;
+				a {
+				  padding-right: 28px;
 				}
 			}
 		}
