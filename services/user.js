@@ -1,19 +1,17 @@
-app.service('userService', ['$location', '$http', 'myCache',
-    function ($location, $http, myCache) {
+app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializer',
+    function ($location, $http, myCache, $httpParamSerializer) {
 
         this.login = function(p_url, p_auth, p_data) {
 
             $http({
 
                 url: p_url,
+                data: $httpParamSerializer(p_data),
                 method: 'POST',
-                transformRequest: function(p_data) {
-                    var str = [];
-                    for(var p in p_data)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(p_data[p]));
-                    return str.join("&");
-                },
-                data: {username: 'jonathan'}
+                headers : {
+                    'Authorization':'Basic '+ p_auth,
+                    'Content-Type':'x-www-form-urlencoded',
+                }
 
             })
             .success(function(data, status, headers, config) {
