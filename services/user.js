@@ -10,8 +10,8 @@ app.service('userService', ['$location', '$http', 'myCache',
                 method: 'POST',
                 transformRequest: function(p_data) {
                     var str = [];
-                    for(var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    for(var p in p_data)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(p_data[p]));
                     return str.join("&");
                 },
                 data: {username: 'jonathan'}
