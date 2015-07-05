@@ -3,15 +3,14 @@ app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializ
 
         this.login = function(p_url, p_auth, p_data) {
 
-            /*
             $http({
 
                 url: p_url,
-                data: {"login": "true"},
+                data: $.param({login: "true"}),
                 method: 'POST',
                 headers : {
                     'Authorization':'Basic '+ p_auth,
-                    'Content-Type':'x-www-form-urlencoded; charset=UTF-8',
+                    'Content-Type':'x-www-form-urlencoded; charset=UTF-8'
                 }
 
             })
@@ -27,29 +26,8 @@ app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializ
             .error(function(data, status, headers, config) {
                 console.log(status + " : " + JSON.stringify(data));
             });
-            */
 
-            $.ajax({
-                type        : 'POST',
-                url         : p_url,
-                headers : {
-                    'Authorization':'Basic '+ p_auth,
-                    'Content-Type':'x-www-form-urlencoded; charset=UTF-8',
-                },
-                data        : {"login": "true"},
-                dataType    : 'json',
-                success     : function(data, status, headers, config) {
-                  console.log(status + " : " + JSON.stringify(data));
 
-                    if(data.succeed === true) {
-                        myCache.put('myData', p_auth);
-                        $location.path( "/file" );
-                    }
-                },
-                error       : function(data, status, headers, config) {
-                    console.log(status + " : " + JSON.stringify(data));
-                }
-            });
 
         }
     }
