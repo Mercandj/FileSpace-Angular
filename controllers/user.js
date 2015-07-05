@@ -21,7 +21,9 @@ app.controller('UserCtrl',
 	    	userService.login(
 	    		URL_SERVER+'user',
 	    		Base64.encode($scope.user.username + ':' + hex_sha1( hex_sha1(hex_sha1($scope.user.password)) + date_str )),
-	    		$scope.form
+	    		{
+	    			'login':'true'
+	    		}
 	    	);
 	    }
 	}
