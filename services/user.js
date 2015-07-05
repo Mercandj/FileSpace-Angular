@@ -10,7 +10,7 @@ app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializ
                 method: 'POST',
                 headers : {
                     'Authorization':'Basic '+ p_auth,
-                    'Content-Type':'x-www-form-urlencoded',
+                    'Content-Type':'x-www-form-urlencoded; charset=UTF-8',
                 }
 
             })
