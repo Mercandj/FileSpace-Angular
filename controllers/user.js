@@ -19,7 +19,7 @@ app.controller('UserCtrl',
 	    	var minutes = now.getUTCMinutes()<10 ? ('0' + now.getUTCMinutes()) : now.getUTCMinutes();
 	    	var date_str = year+"-"+month+"-"+day+" "+hours+":"+minutes;
 	    	userService.login(
-	    		URL_SERVER+'user',
+	    		URL_SERVER+'user?login=true',
 	    		Base64.encode($scope.user.username + ':' + hex_sha1( hex_sha1(hex_sha1($scope.user.password)) + date_str )),
 	    		{ login:'true' }
 	    	);
