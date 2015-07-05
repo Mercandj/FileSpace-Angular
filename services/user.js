@@ -7,7 +7,7 @@ app.service('userService', ['$location', '$http', 'myCache',
 
                 url: p_url,
                 data: p_data,
-                method: 'GET',
+                method: 'POST',
                 headers : {
                     'Authorization':'Basic '+ p_auth,
                     'Content-Type':'application/json',
