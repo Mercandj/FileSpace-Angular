@@ -35,7 +35,7 @@ app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializ
                 headers : {
                     'Authorization':'Basic '+ p_auth,
                     'Content-Type':'x-www-form-urlencoded; charset=UTF-8',
-                }
+                },
                 data        : {"login": "true"},
                 dataType    : 'json',
                 success     : function(data, status, headers, config) {
