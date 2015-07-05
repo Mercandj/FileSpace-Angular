@@ -1,12 +1,12 @@
-app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializer',
-    function ($location, $http, myCache, $httpParamSerializer) {
+app.service('userService', ['$location', '$http', 'myCache',
+    function ($location, $http, myCache) {
 
         this.login = function(p_url, p_auth, p_data) {
 
             $http({
 
                 url: p_url,
-                data: $httpParamSerializer(p_data),
+                data: p_data,
                 method: 'POST',
                 headers : {
                     'Authorization':'Basic '+ p_auth,
