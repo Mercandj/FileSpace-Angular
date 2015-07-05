@@ -1,5 +1,5 @@
-app.service('userService', ['$location', '$http', 'myCache',
-    function ($location, $http, myCache) {
+app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializer',
+    function ($location, $http, myCache, $httpParamSerializer) {
 
         this.login = function(p_url, p_auth, p_data) {
 
