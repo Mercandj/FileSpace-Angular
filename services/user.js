@@ -6,11 +6,11 @@ app.service('userService', ['$location', '$http', 'myCache',
             $http({
 
                 url: p_url,
-                data: p_data,
+                data: $httpParamSerializer(p_data),
                 method: 'POST',
                 headers : {
                     'Authorization':'Basic '+ p_auth,
-                    'Content-Type':'application/json',
+                    'Content-Type':'x-www-form-urlencoded',
                 }
 
             })
