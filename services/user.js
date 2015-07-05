@@ -8,10 +8,13 @@ app.service('userService', ['$location', '$http', 'myCache',
                 url: p_url,
                 data: p_data,
                 method: 'POST',
-                headers : {
-                    'Authorization':'Basic '+ p_auth,
-                    'Content-Type':'x-www-form-urlencoded',
-                }
+                transformRequest: function(p_data) {
+                    var str = [];
+                    for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: {username: 'jonathan'}
 
             })
             .success(function(data, status, headers, config) {
