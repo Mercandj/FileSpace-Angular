@@ -6,7 +6,7 @@ app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializ
             $http({
 
                 url: p_url,
-                data: $.param({login: "true"}),
+                data: {"login": "true"},
                 method: 'POST',
                 headers : {
                     'Authorization':'Basic '+ p_auth,
