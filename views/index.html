@@ -1,15 +1,17 @@
 <div class="login">
-	<form ng-submit="submit()">
-		<h1>Sign In</h1>
+	<div class="login-center">
+		<form ng-submit="submit()">
+			<h1>Sign In</h1>
 
-		<input type="text" ng-model="user.username" autofocus placeholder="Username">
-		<input type="password" ng-model="user.password" placeholder="Password">
+			<input type="text" ng-model="user.username" autofocus placeholder="Username">
+			<input type="password" ng-model="user.password" placeholder="Password">
 
-		<button type="submit">Sign in</button>
+			<button type="submit">Sign in</button>
 
-		<div>
-			<p class="left"><a href="">Sign Up</a></p>
-			<p class="right"><a href="http://mercandalli.com/FileSpace-API/android_app">Android app</a></p> 
-		</div>
-	</form>
+			<div>
+				<p class="left"><a href="">Sign Up</a></p>
+				<p class="right"><a href="http://mercandalli.com/FileSpace-API/android_app">Android app</a></p> 
+			</div>
+		</form>
+	</div>
 </div>
