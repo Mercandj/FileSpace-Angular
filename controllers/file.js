@@ -180,10 +180,10 @@ app.controller('FileCtrl',
 		        var d1Y = d1.getFullYear(), d2Y = d2.getFullYear(), d1M = d1.getMonth(), d2M = d2.getMonth();
 		        return (d2M+12*d2Y)-(d1M+12*d1Y);
                     },
-		    inYears: function(d1, d2) {
-		        return d2.getFullYear()-d1.getFullYear();
-                    }
-		};
+                inYears: function(d1, d2) {
+                    return d2.getFullYear()-d1.getFullYear();
+                }
+            };
             	
                 data.result.forEach(function(file) {
                     file.size = bytesToSize(file.size);
@@ -456,11 +456,11 @@ app.controller('FileCtrl',
                 var context = new AudioContext();
                 var sourceNode;
             	
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
-		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
-		
-		xmlhttp.addEventListener("progress", function(e) {
+        		var xmlhttp = new XMLHttpRequest();
+        		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
+        		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
+        		
+        		xmlhttp.addEventListener("progress", function(e) {
                     if (e.lengthComputable) {
                         media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
                     }
@@ -471,34 +471,34 @@ app.controller('FileCtrl',
                         (xmlhttp.status === 200) && 
                         (xmlhttp.status !== 404)
                         ) {
-                        
+                                
                         var mimeString = 'image/png';
-                	try {
-				var blob = new Blob([xmlhttp.response], {type: mimeString});
-				var reader          = new FileReader ();
-				reader.onload       = function (zFR_Event) {
-					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
-				};
-				reader.readAsDataURL (blob);
-			} catch (e) {
-				// The BlobBuilder API has been deprecated in favour of Blob, but older
-				// browsers don't know about the Blob constructor
-				// IE10 also supports BlobBuilder, but since the `Blob` constructor
-				//  also works, there's no need to add `MSBlobBuilder`.
-				var BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder;
-				var bb = new BlobBuilder();
-				bb.append(xmlhttp.response);
-				var blob = bb.getBlob(mimeString);
-				var reader          = new FileReader ();
-				reader.onload       = function (zFR_Event) {
-					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
-				};
-				reader.readAsDataURL (blob);
-			}
+                    	try {
+            				var blob = new Blob([xmlhttp.response], {type: mimeString});
+            				var reader          = new FileReader ();
+            				reader.onload       = function (zFR_Event) {
+        					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+        				};
+            				reader.readAsDataURL (blob);
+            			} catch (e) {
+            				// The BlobBuilder API has been deprecated in favour of Blob, but older
+            				// browsers don't know about the Blob constructor
+            				// IE10 also supports BlobBuilder, but since the `Blob` constructor
+            				//  also works, there's no need to add `MSBlobBuilder`.
+            				var BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder;
+            				var bb = new BlobBuilder();
+            				bb.append(xmlhttp.response);
+            				var blob = bb.getBlob(mimeString);
+            				var reader          = new FileReader ();
+            				reader.onload       = function (zFR_Event) {
+            					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+            				};
+            				reader.readAsDataURL (blob);
+            			}
                     }
                 };
         
-		xmlhttp.send();
+                xmlhttp.send();
             }
             else if(file.type === 'mp3') {
 
@@ -532,10 +532,10 @@ app.controller('FileCtrl',
                 // and connect to destination
                 sourceNode.connect(context.destination);
             	
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
-		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
-		xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
+                xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
+                xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
                 xmlhttp.responseType = 'arraybuffer';
 
                 xmlhttp.onreadystatechange = function() {
@@ -550,13 +550,13 @@ app.controller('FileCtrl',
                     }
                 };
                 
-		xmlhttp.addEventListener("progress", function(e) {
+                xmlhttp.addEventListener("progress", function(e) {
                     if (e.lengthComputable) {
                         media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
                     }
                 }, false);
         
-		xmlhttp.send();
+                xmlhttp.send();
         		
             }
             else
