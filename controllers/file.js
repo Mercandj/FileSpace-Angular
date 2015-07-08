@@ -25,24 +25,24 @@ app.controller('FileCtrl',
                     },
                     inMinutes: function(d1, d2) {
                         var t2 = d2.getTime(), t1 = d1.getTime();
-		        return parseInt((t2-t1)/(60*1000));
+                        return parseInt((t2-t1)/(60*1000));
                     },
                     inHours: function(d1, d2) {
-		        var t2 = d2.getTime(), t1 = d1.getTime();
-		        return parseInt((t2-t1)/(3600*1000));
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return parseInt((t2-t1)/(3600*1000));
                     },
                     inDays: function(d1, d2) {
-		        var t2 = d2.getTime(), t1 = d1.getTime();
-		        return parseInt((t2-t1)/(24*3600*1000));
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return parseInt((t2-t1)/(24*3600*1000));
                     },
                     inMonths: function(d1, d2) {
-		        var d1Y = d1.getFullYear(), d2Y = d2.getFullYear(), d1M = d1.getMonth(), d2M = d2.getMonth();
-		        return (d2M+12*d2Y)-(d1M+12*d1Y);
+                        var d1Y = d1.getFullYear(), d2Y = d2.getFullYear(), d1M = d1.getMonth(), d2M = d2.getMonth();
+                        return (d2M+12*d2Y)-(d1M+12*d1Y);
                     },
-		    inYears: function(d1, d2) {
-		        return d2.getFullYear()-d1.getFullYear();
+                    inYears: function(d1, d2) {
+                        return d2.getFullYear()-d1.getFullYear();
                     }
-		};
+                };
             	
                 data.result.forEach(function(file) {
                     file.size = bytesToSize(file.size);
@@ -72,16 +72,17 @@ app.controller('FileCtrl',
                     	    	s = (parseInt(ms/1000)%60);
                     	    	
                     	    	if (document.getElementsByClassName)
-                    	    	var current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
-				for(var i = 0; i < current_class.length; i++) {
-				    (current_class[i]).innerHTML = 
-			    		((d>0)?(d+"d : "):"")+
-					((h>0)?(h+" "):"")+
-					((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
-					((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
-					ms_txt+ms_;
-				}
-		            }, 10, timerDate, file.id);
+                                    var current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
+
+                                for(var i = 0; i < current_class.length; i++) {
+                                    (current_class[i]).innerHTML = 
+                                    ((d>0)?(d+"d : "):"")+
+                                    ((h>0)?(h+" "):"")+
+                                    ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
+                                    ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
+                                    ms_txt+ms_;
+                                }
+                            }, 10, timerDate, file.id);
                     }
                     else if(file.directory)
                         file.icon='directory.png';

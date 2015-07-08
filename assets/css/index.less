@@ -13,6 +13,8 @@
 @h1 : 1.6rem;
 @h2 : 1.4rem;
 @p : 1.1rem;
+@list-title : 1.0rem;
+@list-subtitle : 0.8rem;
 
 
 @font-face {
@@ -309,11 +311,11 @@ body{
 		border:1px solid #dbdbdb;
 		border-radius: @border-radius;
 
-		article{
+		article {
 			height: 76px;
 			cursor: pointer;
 
-			a{
+			.item-list {
 				display:block;
 				position: relative;
 				width:100%;
@@ -333,23 +335,37 @@ body{
 					width: 43px;
 				}
 
-				&:hover{
+				&:hover {
 					background: rgba(38,174,238,0.05);
 				}
-			}
 
-			p {
-				position: absolute;
-				color: @grey;
-				font-size:@p;
-				font-family: 'Open Sans', sans-serif;
-				text-decoration: none;
-				overflow: hidden;
-				white-space: nowrap;
-				top: 26px;
-				left: 80px;
-				right: 80px;
+				.title {
+					position: absolute;
+					color: @grey;
+					font-size:@list-title;
+					font-family: 'Open Sans', sans-serif;
+					text-decoration: none;
+					overflow: hidden;
+					white-space: nowrap;
+					top: 18px;
+					left: 80px;
+					right: 80px;
+				}
+
+				.subtitle {
+					position: absolute;
+					color: @grey;
+					font-size:@list-subtitle;
+					font-family: 'Open Sans', sans-serif;
+					text-decoration: none;
+					overflow: hidden;
+					white-space: nowrap;
+					top: 42px;
+					left: 80px;
+					right: 80px;
+				}
 			}
+			
 
 		    .icon-button {
 		    	margin-top: 12px;
