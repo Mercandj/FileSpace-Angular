@@ -1,5 +1,5 @@
-app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializer',
-    function ($location, $http, myCache, $httpParamSerializer) {
+app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializer', '$timeout', '$rootScope',
+    function ($location, $http, myCache, $httpParamSerializer, $timeout, $rootScope) {
 
         this.login = function(p_url, p_auth, p_data) {
 
@@ -20,6 +20,12 @@ app.service('userService', ['$location', '$http', 'myCache', '$httpParamSerializ
                 if(data.succeed === true) {
                     myCache.put('myData', p_auth);
                     $location.path( "/file" );
+                }
+                else {
+                    $rootScope.toast = data.toast;
+                    $timeout(function() {
+                        $rootScope.toast = '';
+                    }, 2500);
                 }
 
             })

@@ -16,6 +16,10 @@
 
         <div ng-view id="wrapper"></div>
 
+        <div class="toast" ng-show="toast != ''">
+            <a id="toast" class="toast-text">{{toast}}</a>
+        </div>
+
         <script src="lib/jquery-2.1.3.min.js"></script>
 
         <script src="lib/angular.min.js"></script>

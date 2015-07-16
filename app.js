@@ -7,6 +7,10 @@ app.config(function($routeProvider){
 		.otherwise({redirectTo : '/'});
 });
 
+app.run(function($rootScope) {
+    $rootScope.toast = '';
+})
+
 app.directive('fileInput', ['$parse', function ($parse) {
     return {
         restrict:'A',

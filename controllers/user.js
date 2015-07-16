@@ -1,8 +1,10 @@
 app.controller('UserCtrl', 
-	function($scope, $location, $http, $q, Base64, myCache, userService) {
+	function($scope, $location, $http, $q, Base64, myCache, userService, $timeout, $rootScope) {
 
 	    $scope.user = {};
 	    var deferred = $q.defer();
+
+    	$rootScope.toast = '';
 
 	    $scope.submit = function() {
 
@@ -23,6 +25,13 @@ app.controller('UserCtrl',
 	    		Base64.encode($scope.user.username + ':' + hex_sha1( hex_sha1(hex_sha1($scope.user.password)) + date_str )),
 	    		{ login:'true' }
 	    	);
+	    }
+
+	    $scope.register = function() {
+	    	$rootScope.toast = 'Registaration closed.';
+	    	$timeout(function() {
+	    		$rootScope.toast = '';
+	    	}, 2500);
 	    }
 	}
 );
