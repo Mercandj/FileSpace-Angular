@@ -346,8 +346,9 @@ app.controller('FileCtrl',
             				var blob = new Blob([xmlhttp.response], {type: mimeString});
             				var reader          = new FileReader ();
             				reader.onload       = function (zFR_Event) {
-        					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
-        				};
+                                console.log("coucou 2");
+            					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+            				};
             				reader.readAsDataURL (blob);
             			} catch (e) {
             				// The BlobBuilder API has been deprecated in favour of Blob, but older
@@ -483,7 +484,7 @@ app.controller('FileCtrl',
                     file.size = bytesToSize(file.size);
                     if(!file.directory)
                         file.name+="."+file.type;
-                    if(file.type=="mp3")
+                    if(file.type=="mp3" || file.type=="wav")
                         file.icon='file_audio.png';
                     else if(file.type=="pdf")
                         file.icon='file_pdf.png';
