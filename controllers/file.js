@@ -25,6 +25,28 @@ app.controller('FileCtrl',
         });
 
         $http({
+            url: URL_SERVER+'file?all-public=true',
+            method: 'GET',
+            headers : {
+                'Authorization':'Basic '+ myCache.get('myData'),
+                'Content-Type':'application/json',
+            }
+        })
+        .success(function(data,status) {
+            $scope.filesPublicOnline = $scope.filesAdapter(data,status);
+            deferred.resolve($scope.filesPublicOnline);
+        })
+        .error(function(data,status) {
+            if(status == 401)
+                deferred.reject('401 unauthorized')
+            else if(status == 404)
+                deferred.reject('404 not found');
+            else
+                deferred.reject('Cannot get files');
+            $location.path( "/" );
+        });
+
+        $http({
             url: URL_SERVER+'information',
             method: 'GET',
             headers : {
