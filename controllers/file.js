@@ -11,87 +11,7 @@ app.controller('FileCtrl',
             }
         })
         .success(function(data,status) {
-            if(data.succeed === true) {
-            	console.log("Result /file : " + JSON.stringify(data.result));
-            	
-            	var DateDiff = {
-                    inMSeconds: function(d1, d2) {
-                        var t2 = d2.getTime(), t1 = d1.getTime();
-                        return t2-t1;
-                    },
-                    inSeconds: function(d1, d2) {
-                        var t2 = d2.getTime(), t1 = d1.getTime();
-                        return parseInt((t2-t1)/(1000));
-                    },
-                    inMinutes: function(d1, d2) {
-                        var t2 = d2.getTime(), t1 = d1.getTime();
-                        return parseInt((t2-t1)/(60*1000));
-                    },
-                    inHours: function(d1, d2) {
-                        var t2 = d2.getTime(), t1 = d1.getTime();
-                        return parseInt((t2-t1)/(3600*1000));
-                    },
-                    inDays: function(d1, d2) {
-                        var t2 = d2.getTime(), t1 = d1.getTime();
-                        return parseInt((t2-t1)/(24*3600*1000));
-                    },
-                    inMonths: function(d1, d2) {
-                        var d1Y = d1.getFullYear(), d2Y = d2.getFullYear(), d1M = d1.getMonth(), d2M = d2.getMonth();
-                        return (d2M+12*d2Y)-(d1M+12*d1Y);
-                    },
-                    inYears: function(d1, d2) {
-                        return d2.getFullYear()-d1.getFullYear();
-                    }
-                };
-            	
-                data.result.forEach(function(file) {
-                    file.size = bytesToSize(file.size);
-                    if(!file.directory)
-                        file.name+="."+file.type;
-                    if(file.type=="mp3")
-                        file.icon='file_audio.png';
-                    else if(file.type=="pdf")
-                        file.icon='file_pdf.png';
-                    else if(file.type=="apk")
-                        file.icon='file_apk.png';
-                    else if(file.type=="zip" || file.type=="gzip" || file.type=="rar" || file.type=="tar" || file.type=="tar.gz" || file.type=="gz")
-                        file.icon='file_archive.png';
-                    else if(file.type=="jarvis" || file.type=="filespace") {
-                        file.icon='file_jarvis.png';
-                        var jsonDate = JSON.parse(file.content),
-                            timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
-                    	    interval = setInterval(function(timerDate, id) {
-                    	    	var ms = DateDiff.inMSeconds(new Date(), timerDate),
-                    	    	ms_ = parseInt((ms%1000)/10),
-                    	    	ms_txt = "";
-                    	    	if(ms_<10) ms_txt+="0";
-                    	    	
-                    	    	var d = (parseInt(ms/86400000)),
-                    	    	h = (parseInt(ms/3600000)%24),
-                    	    	m = (parseInt(ms/60000)%60),
-                    	    	s = (parseInt(ms/1000)%60);
-                    	    	
-                    	    	if (document.getElementsByClassName)
-                                    var current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
-
-                                for(var i = 0; i < current_class.length; i++) {
-                                    (current_class[i]).innerHTML = 
-                                    ((d>0)?(d+"d : "):"")+
-                                    ((h>0)?(h+" "):"")+
-                                    ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
-                                    ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
-                                    ms_txt+ms_;
-                                }
-                            }, 10, timerDate, file.id);
-                    }
-                    else if(file.directory)
-                        file.icon='directory.png';
-                    else
-                        file.icon='file_default.png';
-                });
-                $scope.filesOnline = data.result;
-            	deferred.resolve(data.result);
-            }
+            $scope.filesAdapter(data,status);
         })
         .error(function(data,status) {
             if(status == 401)
@@ -574,6 +494,90 @@ app.controller('FileCtrl',
 
         $scope.save = function() {
             alert("SAVE ");
+        }
+
+        $scope.filesAdapter = function(data,status) {
+            if(data.succeed === true) {
+                console.log("Result /file : " + JSON.stringify(data.result));
+                
+                var DateDiff = {
+                    inMSeconds: function(d1, d2) {
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return t2-t1;
+                    },
+                    inSeconds: function(d1, d2) {
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return parseInt((t2-t1)/(1000));
+                    },
+                    inMinutes: function(d1, d2) {
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return parseInt((t2-t1)/(60*1000));
+                    },
+                    inHours: function(d1, d2) {
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return parseInt((t2-t1)/(3600*1000));
+                    },
+                    inDays: function(d1, d2) {
+                        var t2 = d2.getTime(), t1 = d1.getTime();
+                        return parseInt((t2-t1)/(24*3600*1000));
+                    },
+                    inMonths: function(d1, d2) {
+                        var d1Y = d1.getFullYear(), d2Y = d2.getFullYear(), d1M = d1.getMonth(), d2M = d2.getMonth();
+                        return (d2M+12*d2Y)-(d1M+12*d1Y);
+                    },
+                    inYears: function(d1, d2) {
+                        return d2.getFullYear()-d1.getFullYear();
+                    }
+                };
+                
+                data.result.forEach(function(file) {
+                    file.size = bytesToSize(file.size);
+                    if(!file.directory)
+                        file.name+="."+file.type;
+                    if(file.type=="mp3")
+                        file.icon='file_audio.png';
+                    else if(file.type=="pdf")
+                        file.icon='file_pdf.png';
+                    else if(file.type=="apk")
+                        file.icon='file_apk.png';
+                    else if(file.type=="zip" || file.type=="gzip" || file.type=="rar" || file.type=="tar" || file.type=="tar.gz" || file.type=="gz")
+                        file.icon='file_archive.png';
+                    else if(file.type=="jarvis" || file.type=="filespace") {
+                        file.icon='file_jarvis.png';
+                        var jsonDate = JSON.parse(file.content),
+                            timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
+                            interval = setInterval(function(timerDate, id) {
+                                var ms = DateDiff.inMSeconds(new Date(), timerDate),
+                                ms_ = parseInt((ms%1000)/10),
+                                ms_txt = "";
+                                if(ms_<10) ms_txt+="0";
+                                
+                                var d = (parseInt(ms/86400000)),
+                                h = (parseInt(ms/3600000)%24),
+                                m = (parseInt(ms/60000)%60),
+                                s = (parseInt(ms/1000)%60);
+                                
+                                if (document.getElementsByClassName)
+                                    var current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
+
+                                for(var i = 0; i < current_class.length; i++) {
+                                    (current_class[i]).innerHTML = 
+                                    ((d>0)?(d+"d : "):"")+
+                                    ((h>0)?(h+" "):"")+
+                                    ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
+                                    ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
+                                    ms_txt+ms_;
+                                }
+                            }, 10, timerDate, file.id);
+                    }
+                    else if(file.directory)
+                        file.icon='directory.png';
+                    else
+                        file.icon='file_default.png';
+                });
+                $scope.filesOnline = data.result;
+                deferred.resolve(data.result);
+            }
         }
 
 	}
