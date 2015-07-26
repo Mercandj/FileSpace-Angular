@@ -3,6 +3,7 @@
 <header>
     <a id="Trigger" class="trigger md-icon dp34" onclick="LinkButtonTrigger_Click(this)">menu</a>
     <h1><a href="/">FileSpace</a></h1>
+    <label>Public files<input type="checkbox" ng-model="leftMenu.allPublic"></label>
 </header>
 
 <section id="Content" class="content">
@@ -36,10 +37,6 @@
 </section>
 
 <section id="NavigationMenu" class="navigation-menu">
-
-  <label>Public files
-    <input type="checkbox" ng-model="leftMenu.allPublic">
-  </label>
 
   <ul>
     <li><a ng-click="switchTab(1)">Files</a></li>
