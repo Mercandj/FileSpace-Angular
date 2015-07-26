@@ -347,7 +347,8 @@ app.controller('FileCtrl',
             				var reader          = new FileReader ();
             				reader.onload       = function (zFR_Event) {
                                 console.log("coucou 2");
-            					$("#popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>');
+                                var returnedURL = zFR_Event.target.result;
+            					$("#popup-image").prepend ('<p>New image: <img src="' + returnedURL.replace(/^[^,]+,/, '') + '"></p>');
             				};
             				reader.readAsDataURL (blob);
             			} catch (e) {
