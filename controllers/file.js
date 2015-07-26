@@ -347,7 +347,7 @@ app.controller('FileCtrl',
             				var reader          = new FileReader ();
             				reader.onload       = function (zFR_Event) {
                                 console.log("coucou 2");
-            					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+            					$("#popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>');
             				};
             				reader.readAsDataURL (blob);
             			} catch (e) {
@@ -361,7 +361,7 @@ app.controller('FileCtrl',
             				var blob = bb.getBlob(mimeString);
             				var reader          = new FileReader ();
             				reader.onload       = function (zFR_Event) {
-            					$("popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>')
+            					$("#popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>');
             				};
             				reader.readAsDataURL (blob);
             			}
