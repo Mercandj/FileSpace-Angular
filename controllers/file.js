@@ -329,6 +329,8 @@ app.controller('FileCtrl',
         		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);
         		xmlhttp.setRequestHeader('Authorization', 'Basic '+ myCache.get('myData'));
         		
+                xmlhttp.responseType = 'arraybuffer';
+
         		xmlhttp.addEventListener("progress", function(e) {
                     if (e.lengthComputable) {
                         media_status.innerHTML = "Loading : "+Math.round((e.loaded / e.total) * 100)+" %";
@@ -336,6 +338,23 @@ app.controller('FileCtrl',
                 }, false);
                 
                 xmlhttp.onreadystatechange = function() {
+
+                    if (xmlhttp.status == 200) {
+                        var uInt8Array = new Uint8Array(xmlhttp.response);
+                        var i = uInt8Array.length;
+                        var binaryString = new Array(i);
+                        while (i--) {
+                            binaryString[i] = String.fromCharCode(uInt8Array[i]);
+                        }
+                        var data = binaryString.join('');
+
+                        var base64 = window.btoa(data);
+
+                        $("#popup-image").prepend ('<p>New image: <img id="myImage" src=""></p>');
+                        document.getElementById("myImage").src="data:image/png;base64,"+base64;
+                    }
+
+                    /*
                     if ((xmlhttp.readyState === 4) && 
                         (xmlhttp.status === 200) && 
                         (xmlhttp.status !== 404)
@@ -367,7 +386,9 @@ app.controller('FileCtrl',
             				reader.readAsDataURL (blob);
             			}
                     }
+                    */
                 };
+
         
                 xmlhttp.send();
             }
