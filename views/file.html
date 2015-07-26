@@ -3,7 +3,9 @@
 <header>
     <a id="Trigger" class="trigger md-icon dp34" onclick="LinkButtonTrigger_Click(this)">menu</a>
     <h1><a href="/">FileSpace</a></h1>
-    <label id="PublicCheckbox" class="left-checkbox">Public files<input type="checkbox" ng-model="leftMenu.allPublic"></label>
+
+    <input type="checkbox" id="PublicCheckbox" class="switch" ng-model="leftMenu.allPublic"/>
+    <label class="switch-label" for="PublicCheckbox">Public files</label>
 </header>
 
 <section id="Content" class="content">
