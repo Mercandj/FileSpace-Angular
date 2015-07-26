@@ -11,7 +11,8 @@ app.controller('FileCtrl',
             }
         })
         .success(function(data,status) {
-            $scope.filesAdapter(data,status);
+            $scope.filesOnline = $scope.filesAdapter(data,status);
+            deferred.resolve($scope.filesOnline);
         })
         .error(function(data,status) {
             if(status == 401)
@@ -72,7 +73,8 @@ app.controller('FileCtrl',
                 }
             })
             .success(function(data,status) {
-                $scope.filesAdapter(data,status);
+                $scope.filesOnline = $scope.filesAdapter(data,status);
+                deferred.resolve($scope.filesOnline);
             })
             .error(function(data,status) {
                 if(status == 401)
@@ -496,8 +498,8 @@ app.controller('FileCtrl',
                     else
                         file.icon='file_default.png';
                 });
-                $scope.filesOnline = data.result;
-                deferred.resolve(data.result);
+
+                return data.result;
             }
         }
 
