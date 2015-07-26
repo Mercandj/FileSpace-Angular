@@ -482,24 +482,17 @@ body{
 		display: inline-block;
 		z-index: 2;
 		margin: auto;
-		top: 100%;
+		top: 74px;
 		left: 15%;
 		width: 70%;
-		height: 70%;
+		bottom: 50px;
 		vertical-align: top;
 		background-color: #fff;
 		box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
 
-		-webkit-transition: -webkit-transform .4s linear, visibility 0s linear 0.5s;
-		-moz-transition: -moz-transform .4s linear, visibility 0s linear 0.5s;
-		-ms-transition: -ms-transform .4s linear, visibility 0s linear 0.5s;
-		-o-transition: -o-transform .4s linear, visibility 0s linear 0.5s;
-		transition: transform .4s linear, visibility 0s linear 0.5s;
-
 		visibility: hidden;
 
 		.content {
-			height: 100%;
 			font-size: 1.4em;
 
 			.title {
@@ -514,9 +507,12 @@ body{
 		}
 
 		.footer {
+			background-color: rgba(255,255,255,0.7);
 			height: 50px;
-			position: absolute;
-			bottom: 0;
+			position: fixed;
+			bottom: 50px;
+			width: calc(~"70% - 32px");
+			margin: auto;
 			left: 0;
 			right: 0;
 		}
@@ -553,18 +549,6 @@ body{
     }
 
     .dialog.open {
-		-webkit-transition: -webkit-transform .4s linear, visibility 0s linear 0s;
-		-moz-transition: -moz-transform .4s linear, visibility 0s linear 0s;
-		-ms-transition: -ms-transform .4s linear, visibility 0s linear 0s;
-		-o-transition: -o-transform .4s linear, visibility 0s linear 0s;
-		transition: transform .4s linear, visibility 0s linear 0s;
-
-		-webkit-transform: translateY(-116%);
-		-moz-transform: translateY(-116%);
-		-ms-transform: translateY(-116%);
-		-o-transform: translateY(-116%);
-		transform: translateY(-116%);
-
 		visibility: visible;
     }
     
