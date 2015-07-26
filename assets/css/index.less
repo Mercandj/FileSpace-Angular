@@ -485,7 +485,7 @@ body{
 		top: 100%;
 		left: 15%;
 		width: 70%;
-		height: 60%;
+		height: 70%;
 		vertical-align: top;
 		background-color: #fff;
 		box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
@@ -499,7 +499,7 @@ body{
 		visibility: hidden;
 
 		.content {
-			height: 170px;
+			height: 100%;
 			font-size: 1.4em;
 
 			.title {
@@ -508,14 +508,23 @@ body{
 		    }
 
 		    .placeholder {
-				margin: 2em 0 2em 0;
+		    	position: relative;
+				margin: 2em 0;
 			}
+		}
+
+		.footer {
+			height: 50px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
 		}
 
 		.button {
 			cursor: pointer;
 			position: absolute;
-			bottom: 1em;
+			bottom: 8px;
 		}
 		.button.left {
 			left: 0.5em;
@@ -527,7 +536,6 @@ body{
 
 		textarea {
 			display: block;
-			position: absolute;
 			box-sizing: border-box;
 			width: 93%;
 			margin: 20px 0;
@@ -551,11 +559,11 @@ body{
 		-o-transition: -o-transform .4s linear, visibility 0s linear 0s;
 		transition: transform .4s linear, visibility 0s linear 0s;
 
-		-webkit-transform: translateY(-130%);
-		-moz-transform: translateY(-130%);
-		-ms-transform: translateY(-130%);
-		-o-transform: translateY(-130%);
-		transform: translateY(-130%);
+		-webkit-transform: translateY(-116%);
+		-moz-transform: translateY(-116%);
+		-ms-transform: translateY(-116%);
+		-o-transform: translateY(-116%);
+		transform: translateY(-116%);
 
 		visibility: visible;
     }

@@ -350,7 +350,8 @@ app.controller('FileCtrl',
 
                         var base64 = window.btoa(data);
 
-                        $("#popup-image").prepend ('<p>New image: <img id="myImage" src=""></p>');
+                        media_status.innerHTML = "";
+                        $("#popup-image").prepend ('<img id="myImage" src="">');
                         document.getElementById("myImage").src="data:image/png;base64,"+base64;
                     }
 
