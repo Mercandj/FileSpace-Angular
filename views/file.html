@@ -7,7 +7,7 @@
 
 <section id="Content" class="content">
 
-  <article ng-repeat="file in filesOnline" ng-show="all-public">
+  <article ng-repeat="file in filesOnline" ng-hide="leftMenu.allPublic">
     <div class="item-list" title="{{file.date_creation}}">
       <img height="42" width="42" src="assets/images/{{file.icon}}" ng-click="edit(file)"/>
       <a class="title file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{file.name}}</a>
@@ -20,7 +20,7 @@
     </div>
   </article>
 
-  <article ng-repeat="file in filesPublicOnline" ng-show="all-public">
+  <article ng-repeat="file in filesPublicOnline" ng-show="leftMenu.allPublic">
     <div class="item-list" title="{{file.date_creation}}">
       <img height="42" width="42" src="assets/images/{{file.icon}}" ng-click="edit(file)"/>
       <a class="title file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{file.name}}</a>
