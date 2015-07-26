@@ -7,7 +7,20 @@
 
 <section id="Content" class="content">
 
-  <article ng-repeat="file in filesOnline">
+  <article ng-repeat="file in filesOnline" ng-show="all-public">
+    <div class="item-list" title="{{file.date_creation}}">
+      <img height="42" width="42" src="assets/images/{{file.icon}}" ng-click="edit(file)"/>
+      <a class="title file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{file.name}}</a>
+      <a class="subtitle file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{ (file.directory)?(file.count + " file"+((file.count>0)?"s":"")):file.size }}</a>
+      <div class="file-more" ng-click="download(file)">
+
+        <div class="icon-button fa">&#xf142;</div>
+
+      </div>
+    </div>
+  </article>
+
+  <article ng-repeat="file in filesPublicOnline" ng-show="all-public">
     <div class="item-list" title="{{file.date_creation}}">
       <img height="42" width="42" src="assets/images/{{file.icon}}" ng-click="edit(file)"/>
       <a class="title file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{file.name}}</a>
@@ -23,6 +36,11 @@
 </section>
 
 <section id="NavigationMenu" class="navigation-menu">
+
+  <label>Public files
+    <input type="checkbox" ng-model="leftMenu.allPublic">
+  </label>
+
   <ul>
     <li><a ng-click="switchTab(1)">Files</a></li>
     <li><a ng-click="switchTab(2)">Talks</a></li>

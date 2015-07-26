@@ -1,6 +1,10 @@
 app.controller('FileCtrl',
 	function($scope, $location, $http, $q, Base64, myCache, fileService) {
 
+        $scope.leftMenu = {
+           allPublic : false
+         };
+
 		var deferred = $q.defer();
 		$http({
             url: URL_SERVER+'file',
