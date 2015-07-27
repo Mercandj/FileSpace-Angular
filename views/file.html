@@ -18,7 +18,7 @@
       <img height="42" width="42" src="assets/images/{{file.icon}}" ng-click="edit(file)"/>
       <a class="title file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{file.name}}</a>
       <a class="subtitle file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{ (file.directory)?(file.count + " file"+((file.count>0)?"s":"")):file.size }}</a>
-      <div class="file-more" ng-click="download(file)">
+      <div class="file-more" ng-click="download(file)" ng-hide="file.directory">
 
         <div class="icon-button md-icon dp48">file_download</div>
 
@@ -31,7 +31,7 @@
       <img height="42" width="42" src="assets/images/{{file.icon}}" ng-click="edit(file)"/>
       <a class="title file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{file.name}}</a>
       <a class="subtitle file-id-{{file.id}} file-type-{{file.type}}" ng-click="edit(file)">{{ (file.directory)?(file.count + " file"+((file.count>0)?"s":"")):file.size }}</a>
-      <div class="file-more" ng-click="download(file)">
+      <div class="file-more" ng-click="download(file)" ng-hide="file.directory">
 
         <div class="icon-button md-icon dp48">file_download</div>
 

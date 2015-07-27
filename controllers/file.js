@@ -354,40 +354,7 @@ app.controller('FileCtrl',
                         $("#popup-image").prepend ('<img id="myImage" src="">');
                         document.getElementById("myImage").src="data:image/png;base64,"+base64;
                     }
-
-                    /*
-                    if ((xmlhttp.readyState === 4) && 
-                        (xmlhttp.status === 200) && 
-                        (xmlhttp.status !== 404)
-                        ) {
-                                
-                        var mimeString = 'image/png';
-                    	try {
-            				var blob = new Blob([xmlhttp.response], {type: mimeString});
-            				var reader          = new FileReader ();
-            				reader.onload       = function (zFR_Event) {
-                                console.log("coucou 2");
-                                var returnedURL = zFR_Event.target.result;
-            					$("#popup-image").prepend ('<p>New image: <img src="' + returnedURL.replace(/^[^,]+,/, '') + '"></p>');
-            				};
-            				reader.readAsDataURL (blob);
-            			} catch (e) {
-            				// The BlobBuilder API has been deprecated in favour of Blob, but older
-            				// browsers don't know about the Blob constructor
-            				// IE10 also supports BlobBuilder, but since the `Blob` constructor
-            				//  also works, there's no need to add `MSBlobBuilder`.
-            				var BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder;
-            				var bb = new BlobBuilder();
-            				bb.append(xmlhttp.response);
-            				var blob = bb.getBlob(mimeString);
-            				var reader          = new FileReader ();
-            				reader.onload       = function (zFR_Event) {
-            					$("#popup-image").prepend ('<p>New image: <img src="' + zFR_Event.target.result + '"></p>');
-            				};
-            				reader.readAsDataURL (blob);
-            			}
-                    }
-                    */
+                    
                 };
 
         
