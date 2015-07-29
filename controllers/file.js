@@ -315,15 +315,6 @@ app.controller('FileCtrl',
                     null);
 
                 var media_status = document.getElementById("media_status");
-
-                if (! window.AudioContext) {
-                    if (! window.webkitAudioContext) {
-                        alert('no audiocontext found');
-                    }
-                    window.AudioContext = window.webkitAudioContext;
-                }
-                var context = new AudioContext();
-                var sourceNode;
             	
         		var xmlhttp = new XMLHttpRequest();
         		xmlhttp.open("GET", URL_SERVER+'file/'+file.id, true);

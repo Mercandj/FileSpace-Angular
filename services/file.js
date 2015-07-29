@@ -48,8 +48,6 @@ app.service('fileService', ['$http', 'myCache', '$q',
     function ($http, myCache, $q) {
         this.uploadFileToUrl = function(p_url, p_auth, p_filesArray, p_endListener) {
 
-
-
             var deferred = $q.defer();
             var getProgressListener = function(deferred) {
                 return function(e) {
