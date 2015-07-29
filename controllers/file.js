@@ -129,6 +129,34 @@ app.controller('FileCtrl',
             );
         };
 
+        $scope.delete = function(file) {
+
+            var delete_tmp = function() {
+                $http({
+                    url: URL_SERVER+'file/'+file.id,
+                    method: 'DELETE',
+                    headers : {
+                        'Authorization':'Basic '+ myCache.get('myData'),
+                        'Content-Type':'application/json',
+                    }
+                })
+                .success(function(data,status) {
+                    $scope.refresh(-1);
+                })
+                .error(function(data,status) {
+                    if(status == 401)
+                        deferred.reject('401 unauthorized')
+                    else if(status == 404)
+                        deferred.reject('404 not found');
+                    else
+                        deferred.reject('Cannot get files');
+                    $location.path( "/" );
+                });
+            };
+
+            openDialog("Delete file", "Delete?", "", "Delete", delete_tmp, "Cancel", null);
+        }
+
         $scope.download = function(file) {
         	
         	openDialog(file.name, "",
