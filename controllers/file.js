@@ -497,8 +497,12 @@ app.controller('FileCtrl',
                                 m = (parseInt(ms/60000)%60),
                                 s = (parseInt(ms/1000)%60);
                                 
-                                if (document.getElementsByClassName)
-                                    var current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
+                                var current_class = null;
+                                if (document.getElementsByClassName) {
+                                    current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
+                                    if (file.type=="filespace")
+                                        current_class = document.getElementsByClassName('file-id-'+id+' file-type-filespace');
+                                }                                
 
                                 for(var i = 0; i < current_class.length; i++) {
                                     (current_class[i]).innerHTML = 
