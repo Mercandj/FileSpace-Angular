@@ -80,8 +80,8 @@ app.service('fileService', ['$http', 'myCache', '$q',
                 contentType: false,
                 processData: false,
                 success: function(response, textStatus, jqXHR) {
-                    console.log("success : " + textStatus + " : " + JSON.stringify(response));
-                    alert(response.toast);
+                    console.log("success : " + textStatus + " : " + response);
+                    alert(JSON.parse(response).toast);
                     p_endListener();
                     deferred.resolve(response);
                 },
