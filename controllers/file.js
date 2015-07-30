@@ -133,8 +133,8 @@ app.controller('FileCtrl',
 
             var delete_tmp = function() {
                 $http({
-                    url: URL_SERVER+'file/'+file.id,
-                    method: 'DELETE',
+                    url: URL_SERVER+'file_delete/'+file.id,
+                    method: 'POST',
                     headers : {
                         'Authorization':'Basic '+ myCache.get('myData'),
                         'Content-Type':'application/json',
