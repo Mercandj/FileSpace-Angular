@@ -425,11 +425,16 @@ app.controller('FileCtrl',
                 xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
                 xmlhttp.responseType = 'arraybuffer';
 
+                var isPlaying = false;
+
                 // Decode asynchronously
                 xmlhttp.onload = function() {
                     context.decodeAudioData(xmlhttp.response, function(buffer) {
                         sourceNode.buffer = buffer;
-                        sourceNode.start(0);
+                        if(!isPlaying) {
+                            sourceNode.start(0);
+                            isPlaying = true;
+                        }
                     });
                 }
 
