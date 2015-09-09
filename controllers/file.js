@@ -385,15 +385,15 @@ app.controller('FileCtrl',
 
                     '<audio id="media"></audio>'+
                     '<a id="media_status"></a>'+
-                    '<div id="mp3_player">
-                      <div id="audio_box"></div>
-                      <canvas id="analyser_render"></canvas>
-                    </div>
-                    <style>
-                        div#mp3_player{ width:500px; height:60px; background:#000; padding:5px; margin:50px auto; }
-                        div#mp3_player > div > audio{  width:500px; background:#000; float:left;  }
-                        div#mp3_player > canvas{ width:500px; height:30px; background:#002D3C; float:left; }
-                    </style>',
+                    '<div id="mp3_player">'+
+                    '  <div id="audio_box"></div>'+
+                    '  <canvas id="analyser_render"></canvas>'+
+                    '</div>'+
+                    '<style>'+
+                    '    div#mp3_player{ width:500px; height:60px; background:#000; padding:5px; margin:50px auto; }'+
+                    '    div#mp3_player > div > audio{  width:500px; background:#000; float:left;  }'+
+                    '    div#mp3_player > canvas{ width:500px; height:30px; background:#002D3C; float:left; }'+
+                    '</style>',
 
                     null,
                     null,
