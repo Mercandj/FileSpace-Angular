@@ -383,8 +383,6 @@ app.controller('FileCtrl',
 
                 openDialog(file.name, "",
 
-                    '<audio id="media"></audio>'+
-                    '<a id="media_status"></a>'+
                     '<div id="mp3_player">'+
                     '  <div id="audio_box"></div>'+
                     '  <canvas id="analyser_render"></canvas>'+
@@ -401,9 +399,6 @@ app.controller('FileCtrl',
                     'CANCEL',
                     null);
 
-                var audioElement = document.getElementById("media");
-                var media_status = document.getElementById("media_status");
-
                 if (! window.AudioContext) {
                     if (! window.webkitAudioContext) {
                         alert('no audiocontext found');
@@ -416,9 +411,6 @@ app.controller('FileCtrl',
                 var audioBuffer;
                 var sourceNode;
 
-                var streamingAudioSource = context.createMediaElementSource(audioElement);
-                streamingAudioSource.connect(gainNode1);
-
                 // create a buffer source node
                 sourceNode = context.createBufferSource();
                 // and connect to destination
@@ -430,6 +422,15 @@ app.controller('FileCtrl',
                 xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
                 xmlhttp.responseType = 'arraybuffer';
 
+                // Decode asynchronously
+                xmlhttp.onload = function() {
+                    context.decodeAudioData(xmlhttp.response, function(buffer) {
+                        sourceNode.buffer = buffer;
+                        sourceNode.start(0);
+                    });
+                }
+
+                /*
                 var audio = new Audio();
                 audio.controls = true;
                 audio.loop = true;
@@ -445,8 +446,7 @@ app.controller('FileCtrl',
                             sourceNode.buffer = buffer;
                             sourceNode.start(0);
                         });
-
-
+                        
                         document.getElementById('audio_box').appendChild(audio);
                         canvas = document.getElementById('analyser_render');
                         ctx = canvas.getContext('2d');
@@ -455,11 +455,9 @@ app.controller('FileCtrl',
                         source.connect(analyser);
                         analyser.connect(context.destination);
                         frameLooper();
-
                     }
                 };
-
-
+                
                 function frameLooper(){
                     window.webkitRequestAnimationFrame(frameLooper);
                     fbc_array = new Uint8Array(analyser.frequencyBinCount);
@@ -475,7 +473,7 @@ app.controller('FileCtrl',
                         ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
                     }
                 }
-
+                */
                 
                 xmlhttp.addEventListener("progress", function(e) {
                     if (e.lengthComputable) {
