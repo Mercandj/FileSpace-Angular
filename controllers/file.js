@@ -401,7 +401,7 @@ app.controller('FileCtrl',
                     'CANCEL',
                     null);
 
-                var audio = document.getElementById("media");
+                var audioElement = document.getElementById("media");
                 var media_status = document.getElementById("media_status");
 
                 if (! window.AudioContext) {
@@ -411,9 +411,13 @@ app.controller('FileCtrl',
                     window.AudioContext = window.webkitAudioContext;
                 }
                 var context = new AudioContext();
+                var gainNode1 = context.createGain();
                 var analyser = context.createAnalyser();
                 var audioBuffer;
                 var sourceNode;
+
+                var streamingAudioSource = context.createMediaElementSource(audioElement);
+                streamingAudioSource.connect(gainNode1);
 
                 // create a buffer source node
                 sourceNode = context.createBufferSource();
