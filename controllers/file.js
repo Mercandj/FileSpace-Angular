@@ -383,6 +383,7 @@ app.controller('FileCtrl',
 
                 openDialog(file.name, "",
 
+                    '<a id="media_status"></a>'+
                     '<div id="mp3_player">'+
                     '  <div id="audio_box"></div>'+
                     '  <canvas id="analyser_render"></canvas>'+
