@@ -425,20 +425,6 @@ app.controller('FileCtrl',
                 xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
                 xmlhttp.responseType = 'arraybuffer';
 
-                var isPlaying = false;
-
-                // Decode asynchronously
-                xmlhttp.onload = function() {
-                    context.decodeAudioData(xmlhttp.response, function(buffer) {
-                        sourceNode.buffer = buffer;
-                        if(!isPlaying) {
-                            sourceNode.start(0);
-                            isPlaying = true;
-                        }
-                    });
-                }
-
-                /*
                 var audio = new Audio();
                 audio.controls = true;
                 audio.loop = true;
@@ -481,7 +467,6 @@ app.controller('FileCtrl',
                         ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
                     }
                 }
-                */
                 
                 xmlhttp.addEventListener("progress", function(e) {
                     if (e.lengthComputable) {
