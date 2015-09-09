@@ -384,7 +384,16 @@ app.controller('FileCtrl',
                 openDialog(file.name, "",
 
                     '<audio id="media"></audio>'+
-                    '<a id="media_status"></a>',
+                    '<a id="media_status"></a>'+
+                    '<div id="mp3_player">
+                      <div id="audio_box"></div>
+                      <canvas id="analyser_render"></canvas>
+                    </div>
+                    <style>
+                        div#mp3_player{ width:500px; height:60px; background:#000; padding:5px; margin:50px auto; }
+                        div#mp3_player > div > audio{  width:500px; background:#000; float:left;  }
+                        div#mp3_player > canvas{ width:500px; height:30px; background:#002D3C; float:left; }
+                    </style>',
 
                     null,
                     null,
@@ -417,6 +426,12 @@ app.controller('FileCtrl',
                 xmlhttp.setRequestHeader('Content-Type', 'audio/mpeg');
                 xmlhttp.responseType = 'arraybuffer';
 
+                var audio = new Audio();
+                audio.controls = true;
+                audio.loop = true;
+                audio.autoplay = true;
+                var canvas, ctx, source, fbc_array, bars, bar_x, bar_width, bar_height;
+
                 xmlhttp.onreadystatechange = function() {
                     if ((xmlhttp.readyState === 4) && 
                         (xmlhttp.status === 200) && 
@@ -426,8 +441,37 @@ app.controller('FileCtrl',
                             sourceNode.buffer = buffer;
                             sourceNode.start(0);
                         });
+
+
+                        document.getElementById('audio_box').appendChild(audio);
+                        canvas = document.getElementById('analyser_render');
+                        ctx = canvas.getContext('2d');
+                        // Re-route audio playback into the processing graph of the AudioContext
+                        source = context.createMediaElementSource(audio); 
+                        source.connect(analyser);
+                        analyser.connect(context.destination);
+                        frameLooper();
+
                     }
                 };
+
+
+                function frameLooper(){
+                    window.webkitRequestAnimationFrame(frameLooper);
+                    fbc_array = new Uint8Array(analyser.frequencyBinCount);
+                    analyser.getByteFrequencyData(fbc_array);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+                    ctx.fillStyle = '#00CCFF'; // Color of the bars
+                    bars = 100;
+                    for (var i = 0; i < bars; i++) {
+                        bar_x = i * 3;
+                        bar_width = 2;
+                        bar_height = -(fbc_array[i] / 2);
+                        //  fillRect( x, y, width, height ) // Explanation of the parameters below
+                        ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
+                    }
+                }
+
                 
                 xmlhttp.addEventListener("progress", function(e) {
                     if (e.lengthComputable) {
