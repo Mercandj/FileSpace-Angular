@@ -400,6 +400,8 @@ app.controller('FileCtrl',
                     'CANCEL',
                     null);
 
+                var media_status = document.getElementById("media_status");
+
                 if (! window.AudioContext) {
                     if (! window.webkitAudioContext) {
                         alert('no audiocontext found');
