@@ -500,35 +500,38 @@ app.controller('FileCtrl',
                         file.icon='file_archive.png';
                     else if(file.type=="jarvis" || file.type=="filespace") {
                         file.icon='file_jarvis.png';
-                        var jsonDate = JSON.parse(file.content),
-                            timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
-                            interval = setInterval(function(timerDate, id) {
-                                var ms = DateDiff.inMSeconds(new Date(), timerDate),
-                                ms_ = parseInt((ms%1000)/10),
-                                ms_txt = "";
-                                if(ms_<10) ms_txt+="0";
-                                
-                                var d = (parseInt(ms/86400000)),
-                                h = (parseInt(ms/3600000)%24),
-                                m = (parseInt(ms/60000)%60),
-                                s = (parseInt(ms/1000)%60);
-                                
-                                var current_class = null;
-                                if (document.getElementsByClassName) {
-                                    current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
-                                    if (file.type=="filespace")
-                                        current_class = document.getElementsByClassName('file-id-'+id+' file-type-filespace');
-                                }                                
+                        var jsonDate = JSON.parse(file.content);
 
-                                for(var i = 0; i < current_class.length; i++) {
-                                    (current_class[i]).innerHTML = 
-                                    ((d>0)?(d+"d : "):"")+
-                                    ((h>0)?(h+" "):"")+
-                                    ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
-                                    ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
-                                    ms_txt+ms_;
-                                }
-                            }, 10, timerDate, file.id);
+                        if(jsonDate.type == "timer") {
+                            var timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
+                                interval = setInterval(function(timerDate, id) {
+                                    var ms = DateDiff.inMSeconds(new Date(), timerDate),
+                                    ms_ = parseInt((ms%1000)/10),
+                                    ms_txt = "";
+                                    if(ms_<10) ms_txt+="0";
+                                    
+                                    var d = (parseInt(ms/86400000)),
+                                    h = (parseInt(ms/3600000)%24),
+                                    m = (parseInt(ms/60000)%60),
+                                    s = (parseInt(ms/1000)%60);
+                                    
+                                    var current_class = null;
+                                    if (document.getElementsByClassName) {
+                                        current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
+                                        if (file.type=="filespace")
+                                            current_class = document.getElementsByClassName('file-id-'+id+' file-type-filespace');
+                                    }                                
+
+                                    for(var i = 0; i < current_class.length; i++) {
+                                        (current_class[i]).innerHTML = 
+                                        ((d>0)?(d+"d : "):"")+
+                                        ((h>0)?(h+" "):"")+
+                                        ((m>0)?( ((m<10 && h>0)?("0"+m):m) +" "):"")+
+                                        ((s>0)?( ((s<10 && m>0)?("0"+s):s) +" : "):"")+
+                                        ms_txt+ms_;
+                                    }
+                                }, 10, timerDate, file.id);
+                        }
                     }
                     else if(file.directory)
                         file.icon='directory.png';
