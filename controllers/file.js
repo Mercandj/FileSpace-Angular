@@ -329,6 +329,21 @@ app.controller('FileCtrl',
 
                 });
             }
+            else if (file.type=="jarvis" || file.type=="filespace") {
+                var json = JSON.parse(file.content);
+                if(json.type == "article") {
+                    openDialog(json.article_title_1, "",
+                        '<textarea rows="5" name="text" placeholder="YOUR TXT" class="error">'+
+                        json.article_content_1 +
+                        '</textarea>',
+
+                        'SAVE',
+                        null,
+
+                        'CANCEL',
+                        null);
+                }
+            }
             else if(file.type === 'png' || file.type === 'jpg') {
 
                 openDialog(file.name, "",
@@ -499,11 +514,11 @@ app.controller('FileCtrl',
                     else if(file.type=="zip" || file.type=="gzip" || file.type=="rar" || file.type=="tar" || file.type=="tar.gz" || file.type=="gz")
                         file.icon='file_archive.png';
                     else if(file.type=="jarvis" || file.type=="filespace") {
-                        file.icon='file_jarvis.png';
-                        var jsonDate = JSON.parse(file.content);
+                        file.icon='file_filespace.png';
+                        var json = JSON.parse(file.content);
 
-                        if(jsonDate.type == "timer") {
-                            var timerDate = new Date(jsonDate.timer_date.replace(" ", "T") + "Z"),
+                        if(json.type == "timer") {
+                            var timerDate = new Date(json.timer_date.replace(" ", "T") + "Z"),
                                 interval = setInterval(function(timerDate, id) {
                                     var ms = DateDiff.inMSeconds(new Date(), timerDate),
                                     ms_ = parseInt((ms%1000)/10),
@@ -531,6 +546,17 @@ app.controller('FileCtrl',
                                         ms_txt+ms_;
                                     }
                                 }, 10, timerDate, file.id);
+                        }
+                        else if(json.type == "article") {
+                            var current_class = null;
+                            if (document.getElementsByClassName) {
+                                current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
+                                if (file.type=="filespace")
+                                    current_class = document.getElementsByClassName('file-id-'+id+' file-type-filespace');
+                            }
+                            for(var i = 0; i < current_class.length; i++) {
+                                (current_class[i]).innerHTML = json.article_title_1;
+                            }
                         }
                     }
                     else if(file.directory)
