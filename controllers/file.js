@@ -548,12 +548,14 @@ app.controller('FileCtrl',
                                 }, 10, timerDate, file.id);
                         }
                         else if(json.type == "article") {
-                            var current_class_title = document.getElementsByClassName('file-id-'+file.id+' title');
-                            var current_class_subtitle = document.getElementsByClassName('file-id-'+file.id+' subtitle');
-                            for(var i = 0; i < current_class_title.length; i++)
-                                (current_class_title[i]).innerHTML = json.article_title_1;
-                            for(var i = 0; i < current_class_subtitle.length; i++)
-                                (current_class_subtitle[i]).innerHTML = "FileSpace Article";
+                            var interval = setInterval(function(id) {
+                                var current_class_title = document.getElementsByClassName('file-id-'+id+' title');
+                                var current_class_subtitle = document.getElementsByClassName('file-id-'+id+' subtitle');
+                                for(var i = 0; i < current_class_title.length; i++)
+                                    (current_class_title[i]).innerHTML = json.article_title_1;
+                                for(var i = 0; i < current_class_subtitle.length; i++)
+                                    (current_class_subtitle[i]).innerHTML = "FileSpace Article";
+                            }, 250, file.id);                            
                         }
                     }
                     else if(file.directory)
