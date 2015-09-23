@@ -550,9 +550,9 @@ app.controller('FileCtrl',
                         else if(json.type == "article") {
                             var current_class = null;
                             if (document.getElementsByClassName) {
-                                current_class = document.getElementsByClassName('file-id-'+id+' file-type-jarvis');
+                                current_class = document.getElementsByClassName('file-id-'+file.id+' file-type-jarvis');
                                 if (file.type=="filespace")
-                                    current_class = document.getElementsByClassName('file-id-'+id+' file-type-filespace');
+                                    current_class = document.getElementsByClassName('file-id-'+file.id+' file-type-filespace');
                             }
                             for(var i = 0; i < current_class.length; i++) {
                                 (current_class[i]).innerHTML = json.article_title_1;
